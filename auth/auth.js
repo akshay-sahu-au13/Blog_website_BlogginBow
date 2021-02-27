@@ -1,16 +1,23 @@
 const jwt = require('jsonwebtoken');
 const config = require('../config/config');
+const path = require('path')
+const layout = path.join('layouts', "index");
 const auth = function(req, res, next) {
 
-        if ( '/login' !== req.path && ! req.cookies.hasOwnProperty( 'token' ) ) {
-            data = {msg:"Please login to access this page!"}
-            return res.redirect( '/login', data );
+        if ( ! req.cookies['token']) {
+            data = {msg:"Please login to access profile page!"}
+            return res.render( 'login',{ data, layout});
         }
-        // Check if it's login page and my-token is existed > redirect to home page
-        else if ( '/login' === req.path && req.cookies.hasOwnProperty( 'token' ) ) {
+
+        // else if ( 'auth/login' === req.path && req.cookies['token'] ) {
+            else if ( req.cookies['token'] ) {
             const decoded = jwt.verify(req.cookies['token'], config.secret);
-            req.user = decoded.user;
+            // console.log(decoded);
+            req.user = decoded;
+            
         }
-     
         next();
+        
     } ;
+
+module.exports = auth;

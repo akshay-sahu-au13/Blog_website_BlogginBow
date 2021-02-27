@@ -14,11 +14,11 @@ const userSchema = mongoose.Schema({
         required: true
     },
 
-    dob: {
-        type: Date,
+    gender: {
+        type: String,
         required: true
     },
-    sex: String,
+
     password: {
         type: String,
         required: true
@@ -26,4 +26,4 @@ const userSchema = mongoose.Schema({
 
 },{timestamps: true});
 
-module.exports = mongoose.model('user', userSchema);
+module.exports = mongoose.model('reg_user', userSchema);

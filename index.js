@@ -7,6 +7,10 @@ const layout = path.join('layouts', "index");
 const cookie = require( 'cookie-parser' );
 const PORT = process.env.PORT || 5100;
 
+// Connecting to MongoDB database
+MongoInit();
+
+// Starting express app
 const app = express();
 
 app.use( cookie() );

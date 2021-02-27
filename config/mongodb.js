@@ -4,7 +4,7 @@ const MongoUri = "mongodb+srv://akshay:admin@cluster0.3sl2w.mongodb.net/atlasdb?
 
 const MongoInit = async ()=> {
 
-    await mongoose.connect(MongoUri, {useCreateIndex: true, useNewUrlParser: true, useFindAndModify: true});
+    await mongoose.connect(MongoUri, {useCreateIndex: true, useNewUrlParser: true, useFindAndModify: true, useUnifiedTopology:true});
     console.log("Connected to Mongo AtlasDB...");
 }
 
