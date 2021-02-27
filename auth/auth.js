@@ -9,7 +9,7 @@ const auth = function(req, res, next) {
             return res.render( 'login',{ data, layout});
         }
 
-        // else if ( 'auth/login' === req.path && req.cookies['token'] ) {
+
             else if ( req.cookies['token'] ) {
             const decoded = jwt.verify(req.cookies['token'], config.secret);
             // console.log(decoded);
