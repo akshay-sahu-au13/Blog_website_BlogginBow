@@ -63,7 +63,29 @@
             <form action="/auth/signup" method="post" class="log-form">
 
                 <div class="group log-input">
-                    <input type="text" id="username" name="username" placeholder="Username">
+                    <input type="text" id="fname" name="fname" placeholder="First Name">
+                </div>
+
+                <div class="group log-input">
+                    <input type="text" id="lname" name="lname" placeholder="Last Name">
+                </div>
+
+                <div class="group log-input">
+                    <input type="email" id="email" name="email" placeholder="Email ID">
+                </div>
+
+                <div class="group log-input">
+                    <label for="male" name="gender">Gender</label>
+                    <div class="radio-toolbar">
+                        <input type="radio" id="male" name="gender" value="male">
+                        <label for="male">Male</label>
+
+                        <input type="radio" id="female" name="gender" value="female">
+                        <label for="female">Female</label>
+
+                        <input type="radio" id="other" name="gender" value="other">
+                        <label for="other">Other</label>
+                    </div>
                 </div>
 
                 <div class="group log-input">
@@ -71,8 +93,8 @@
                 </div>
 
                 <span class="check left-align">
-                    <input type="checkbox">
-                    <label>Remember Me</label>
+                    <input type="checkbox" id="checkbox" name="T&C" checked>
+                    <label>I agree to all the terms and conditions</label>
                 </span>
 
                 <a class="right-align" href="#">Forgot Password</a>
