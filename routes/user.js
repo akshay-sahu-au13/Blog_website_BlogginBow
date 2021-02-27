@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const path = require("path");
-const hbs = require('hbs');
+const cookie = require( 'cookie-parser' );
 const User = require('../models/user');
 
 const layout = path.join('layouts','index');
