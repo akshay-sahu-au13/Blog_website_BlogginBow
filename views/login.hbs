@@ -15,7 +15,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="index.html">Home</a>
+                    <a href="/home">Home</a>
                 </li>
                 <li>
                     <a href="about.html">About</a>
@@ -43,7 +43,7 @@
 <!-- Set your background image for this header on the line below. -->
 <header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
     <div class="container">
-        <div class="row">
+        {{!-- <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="site-heading">
                     <h2>BlogginBow Login</h2>
@@ -51,7 +51,45 @@
                     <span class="subheading">A heaven created solely for writers</span>
                 </div>
             </div>
-        </div>
+        </div> --}}
+        {{!-- Login form --}}
+        <section>
+
+            <hgroup>
+                <h2>BlogginBow Login!</h2>
+                <p>Please enter your details to sign into your account</p>
+            </hgroup>
+
+            <form action="/auth/login" method="post" class="log-form">
+
+                <div class="group log-input">
+                    <input type="text" id="username" name="username" placeholder="Enter your email">
+                </div>
+
+                <div class="group log-input">
+                    <input type="password" id="password" name="password" placeholder="Password">
+                </div>
+
+                <span class="check left-align">
+                    <input type="checkbox">
+                    <label>Remember Me</label>
+                </span>
+
+                <a class="right-align" href="#">Forgot Password</a>
+
+                <br><br>
+
+                <div class="container-log-btn">
+                    <button type="submit" name="btn_submit" class="log-form-btn">
+                        <span>Login</span>
+                    </button>
+                </div>
+
+            </form>
+
+
+
+        </section>
     </div>
 </header>
 
