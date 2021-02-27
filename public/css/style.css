@@ -120,9 +120,9 @@ hgroup {
   background-color: transparent;
   border-radius:7px;
   cursor: pointer;
-
+  font-family: "Montserrat";
   font-size: 16px;
-  color: #000;
+  color: rgb(44, 43, 43);
   line-height: 1.2;
   text-transform: uppercase;
 
@@ -149,7 +149,7 @@ hgroup {
   -o-transform: translateX(-50%);
   transform: translateX(-50%);
   border-radius: 7px;
-  background-color: #c7b279;
+  background-color: #ecd083;
   pointer-events: none;
   
   -webkit-transition: all 0.4s;
@@ -159,7 +159,7 @@ hgroup {
 }
 
 .log-form-btn:hover:before {
-  background-color: #a17e5c;
+  background-color: #b6880a;
 }
 
 input[type="text"], input[type="email"], input[type="password"], textarea, select {
@@ -178,7 +178,7 @@ input[type="text"], input[type="email"], input[type="password"], textarea, selec
 }
 
 input[type="checkbox"]:not(:checked) + label, input[type="checkbox"]:checked + label {
-    color: #aaaaaa;
+    color: #9e9c9c;
     cursor: pointer;
     font-size: 9px;
     font-weight: 600;
@@ -191,6 +191,15 @@ input[type="checkbox"]:not(:checked) + label, input[type="checkbox"]:checked + l
 
 /* Signup form elements */
 /* Radio Toolbar */
+
+.log-input label {
+    font-family: "Montserrat";
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    color : #858383;
+    margin-left: 20px;
+}
 .radio-toolbar {
     margin: 10px;
   }
@@ -202,17 +211,19 @@ input[type="checkbox"]:not(:checked) + label, input[type="checkbox"]:checked + l
   }
   
   .radio-toolbar label {
+    letter-spacing: 0.15em;
+      color: #6e6d6d ;
       display: inline-block;
-      background-color: rgb(248, 244, 232);
+      background-color: rgb(253, 245, 220);
       padding: 10px 20px;
-      font-family: sans-serif, Arial;
-      font-size: 16px;
-      border: 1px solid rgb(248, 212, 119);
+      font-family: "Montserrat";
+      font-size: 13px;
+      border: 1px solid rgba(253, 209, 99, 0.877);
       border-radius: 4px;
   }
   
   .radio-toolbar label:hover {
-    background-color: rgb(223, 199, 141)    ;
+    background-color: rgba(243, 208, 127, 0.877)    ;
   }
   
   .radio-toolbar input[type="radio"]:focus + label {
@@ -220,6 +231,7 @@ input[type="checkbox"]:not(:checked) + label, input[type="checkbox"]:checked + l
   }
   
   .radio-toolbar input[type="radio"]:checked + label {
-      background-color: rgb(252, 238, 161);
-      border-color: rgba(192, 148, 4, 0.829);
+      background-color: rgb(245, 217, 125);
+      border-color: rgba(163, 126, 5, 0.829);
+      color:rgb(128, 99, 6) ;
   }
