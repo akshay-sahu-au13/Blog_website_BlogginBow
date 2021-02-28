@@ -7,7 +7,7 @@ const bcrypt = require('bcryptjs');
 const auth = require('../auth/auth');
 const { check, validationResult } = require('express-validator/check');
 const jwt = require('jsonwebtoken');
-
+const loggedUsers = {};
 const layout = path.join('layouts', 'index');
 // const layout = path.join('layouts', "index");
 
@@ -72,6 +72,10 @@ router.post('/signup',
 
 router.get('/login', (req, res) => {
 
+    // if (loggedUsers[jwt.verify(req.cookies['token'], config.secret)] == true){
+    //      res.redirect('/auth/profile');
+    // }
+
     res.render('login', { title: "Login", layout });
 
 });
@@ -112,6 +116,8 @@ router.post('/login',
             const token = await jwt.sign(user.id, config.secret);
             // console.log(token);
             res.cookie( 'token', token, { maxAge: 30000} );
+
+            loggedUsers[user._id] = true;
             
             res.redirect('/auth/profile');
 
