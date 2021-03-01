@@ -71,9 +71,17 @@ router.post('/signup',
 
 
 router.get('/login', (req, res) => {
-
+    if (req.cookies.hasOwnProperty('token') ){
+        console.log("Yes")
+    }else {
+        console.log('No')
+    }
     // if (loggedUsers[jwt.verify(req.cookies['token'], config.secret)] == true){
-    //      res.redirect('/auth/profile');
+    //       res.redirect('/auth/profile');
+
+    // {
+    //     603aa18035884a0eccd78788: true,
+    //     603aa18035884a0eccd78785667: true
     // }
 
     res.render('login', { title: "Login", layout });

@@ -12,7 +12,7 @@ const auth = function(req, res, next) {
 
             else if ( req.cookies['token'] ) {
             const decoded = jwt.verify(req.cookies['token'], config.secret);
-            // console.log(decoded);
+            console.log(decoded);
             req.user = decoded;
             
         }
