@@ -9,7 +9,6 @@ const { check, validationResult } = require('express-validator/check');
 const jwt = require('jsonwebtoken');
 const loggedUsers = {};
 const layout = path.join('layouts', 'index');
-// const layout = path.join('layouts', "index");
 
 // -------GET SIGNUP---------
 router.get('/signup', (req, res) => {
@@ -79,10 +78,6 @@ router.get('/login', (req, res) => {
     // if (loggedUsers[jwt.verify(req.cookies['token'], config.secret)] == true){
     //       res.redirect('/auth/profile');
 
-    // {
-    //     603aa18035884a0eccd78788: true,
-    //     603aa18035884a0eccd78785667: true
-    // }
 
     res.render('login', { title: "Login", layout });
 
