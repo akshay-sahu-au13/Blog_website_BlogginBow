@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
-const userRoutes = require('./routes/user');
+const {userRoutes, loggedUsers} = require('./routes/user');
 const blogRoutes = require('./routes/blogs');
 const MongoInit = require('./config/mongodb');
 const layout = path.join('layouts', "index");
@@ -22,7 +22,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
 // Routers
-app.use('/auth', userRoutes.router);
+app.use('/auth', userRoutes);
 app.use('/', blogRoutes);
 
 // setting path for static files
@@ -35,7 +35,7 @@ app.set('views', path.join(__dirname,'views'));
 // hbs.registerPartial(partials,partialPath);
 
 app.get('/', (req, res)=> {
-    console.log(userRoutes.loggedUsers)
+    console.log(loggedUsers)
     res.render('home', {title: " BlogginBow home", layout});
 });
 

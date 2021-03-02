@@ -159,4 +159,6 @@ router.get('/logout', async(req, res)=> {
 
 });
 
-module.exports = {router, loggedUsers};
+userRoutes = router;
+
+module.exports = {userRoutes, loggedUsers};
