@@ -155,8 +155,7 @@ router.get('/logout', async(req, res)=> {
     loggedUsers[jwt.verify(req.cookies['token'], config.secret)] = false;
 
         res.redirect('/auth/login');
-    console.log(loggedUsers) // to check if the id is set to false or not
-
+    console.log(loggedUsers); // to check if the id is set to false or not
 
 });
 
