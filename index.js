@@ -7,6 +7,8 @@ const MongoInit = require('./config/mongodb');
 const layout = path.join('layouts', "index");
 const cookie = require( 'cookie-parser' );
 const PORT = process.env.PORT || 5100;
+const hbs = require('hbs');
+const partialPath = path.join(__dirname,'../views/partials');
 
 // Connecting to MongoDB database
 MongoInit();
@@ -30,6 +32,7 @@ app.use(express.static(path.join(__dirname,'public')));
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname,'views'));
 
+// hbs.registerPartial(partials,partialPath);
 
 app.get('/', (req, res)=> {
     console.log(userRoutes.loggedUsers)
