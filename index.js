@@ -20,7 +20,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
 // Routers
-app.use('/auth', userRoutes);
+app.use('/auth', userRoutes.router);
 app.use('/', blogRoutes);
 
 // setting path for static files
@@ -32,6 +32,7 @@ app.set('views', path.join(__dirname,'views'));
 
 
 app.get('/', (req, res)=> {
+    console.log(userRoutes.loggedUsers)
     res.render('home', {title: " BlogginBow home", layout});
 });
 
