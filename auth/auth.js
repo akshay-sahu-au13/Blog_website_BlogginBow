@@ -36,6 +36,7 @@ const authRole = async function (req, res, next) {
 
             
         } else {
+            
             next()
         }
     } catch (error) {
