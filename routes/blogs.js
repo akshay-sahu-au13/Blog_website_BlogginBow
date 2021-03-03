@@ -5,7 +5,7 @@ const {auth, authRole }= require('../auth/auth');
 const User = require('../models/user');
 
 
-router.get('/auth/profile/blog', auth, async(req, res)=> {
+router.get('/allblogs', auth, async(req, res)=> {
     let user = await User.findById({_id:req.user});
     data = {
         title: `${user.firstName}'s blogpost`,
@@ -15,7 +15,7 @@ router.get('/auth/profile/blog', auth, async(req, res)=> {
     res.render('blogs', data);
 });
 
-router.post('/auth/profile/blog', auth, async(req, res)=> {
+router.post('/writeblog', auth, async(req, res)=> {
 
     const blog = new Blog({
         title: req.body.title,
