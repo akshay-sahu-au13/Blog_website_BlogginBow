@@ -173,15 +173,8 @@ router.get('/profile/update', (req, res)=> {
 
 router.post('/profile/update',auth,upload, async(req, res)=> {
     const user = await User.findById({_id:req.user})
-    console.log(user)
-    // upload(req, res, err => {
-    //     if (err){
-    //         res.render('updprofile', {layout, title:"Update info", msg:err} );
-    //     } else {
-    //         console.log(req.file);
-    //         res.render('updprofile', {title:"Update info", layout, msg:"Image uploaded succesfully"})
-    //     }
-    // })
+    console.log(user) //TEST: to check the user info -will remove it soon
+
     const info = new Profile({
         contact: req.body.contact,
         about: req.body.about,
@@ -191,13 +184,13 @@ router.post('/profile/update',auth,upload, async(req, res)=> {
             city: req.body.city,
             zip: req.body.zip
         },
-        image: req.file,
+        image: req.file.filename,
         facebook: req.body.facebook,
         userId: user._id
     });
 
     await info.save();
-    res.render('profile1', {layout, title:"Profile", info})
+    res.render('profile1', {layout, title:"Profile", info, user})
 });
 
 router.get('/logout', async(req, res)=> {

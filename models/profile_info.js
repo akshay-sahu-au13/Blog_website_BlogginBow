@@ -26,7 +26,8 @@ const profileInfo = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "reg_user",
         default: null
-    }
+    },
+    image: String
 
 });
 
