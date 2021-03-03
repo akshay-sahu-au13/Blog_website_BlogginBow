@@ -149,14 +149,15 @@ router.get('/admin', (req, res)=> {
 
 router.get('/profile', auth, async (req, res) => {
     const user = await User.findById({ _id: req.user })
-    res.render('profile', { title: `${user.firstName}'s profile`, layout, user });
+    res.render('profile1', { title: `${user.firstName}'s profile`, layout, user });
 });
 
 router.get('/profile/update', (req, res)=> {
     res.render('updprofile', {layout, title: "Update info"});
 });
 
-router.post('/profile/update', async(req, res)=> {
+router.post('/profile/update',auth, async(req, res)=> {
+    const user = await User.findById({_id:req.user})
     const info = new Profile({
         contact: req.body.contact,
         about: req.body.about,
@@ -167,11 +168,12 @@ router.post('/profile/update', async(req, res)=> {
             zip: req.body.zip
         },
         image: req.body.dp,
-        facebook: req.body.facebook
+        facebook: req.body.facebook,
+        userId: req.user
     });
 
     await info.save();
-    res.render('profile', {layout, title:"Profile", info, user})
+    res.render('profile', {layout, title:"Profile", info})
 });
 
 router.get('/logout', async(req, res)=> {

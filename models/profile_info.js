@@ -5,9 +5,8 @@ const profileInfo = mongoose.Schema({
         type: String,
         default: "Tell us about yourself..."
     },
-    image: {
-        type: String
-    },
+    
+        
     address: {
         street: String,
         state: String,
@@ -25,7 +24,7 @@ const profileInfo = mongoose.Schema({
     },
     userId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "user",
+        ref: "reg_user",
         default: null
     }
 
