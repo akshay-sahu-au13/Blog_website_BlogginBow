@@ -8,6 +8,8 @@ const bcrypt = require('bcryptjs');
 const {auth, authRole} = require('../auth/auth');
 const { check, validationResult } = require('express-validator/check');
 const jwt = require('jsonwebtoken');
+const { userInfo } = require('os');
+const { request } = require('http');
 const loggedUsers = {};
 const layout = path.join('layouts', 'index');
 
@@ -152,6 +154,24 @@ router.get('/profile', auth, async (req, res) => {
 
 router.get('/profile/update', (req, res)=> {
     res.render('updprofile', {layout, title: "Update info"});
+});
+
+router.post('/profile/update', async(req, res)=> {
+    const info = new Profile({
+        contact: req.body.contact,
+        about: req.body.about,
+        address: {
+            street: req.body.street,
+            state: req.body.state,
+            city: req.body.city,
+            zip: req.body.zip
+        },
+        image: req.body.dp,
+        facebook: req.body.facebook
+    });
+
+    await info.save();
+    res.render('profile', {layout, title:"Profile", info, user})
 });
 
 router.get('/logout', async(req, res)=> {

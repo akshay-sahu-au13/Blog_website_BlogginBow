@@ -8,17 +8,26 @@ const profileInfo = mongoose.Schema({
     image: {
         type: String
     },
-    Address: {
-        type: String,
-        default: "Where do you live?"
+    address: {
+        street: String,
+        state: String,
+        city: String,
+        zip: String,
+    
     },
     contact: {
         type: Number,
         default: "Please update the Number"
     },
     facebook: {
-        type: String
+        type: String,
+        default: "None"
     },
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "user",
+        default: null
+    }
 
 });
 
