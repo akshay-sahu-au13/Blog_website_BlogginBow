@@ -185,6 +185,10 @@ router.get('/logout', async(req, res)=> {
 
 });
 
+router.get('/profile/writeblog', (req, res)=> {
+    res.render('writeblog', {layout, title:"Write blog here"})
+})
+
 userRoutes = router;
 
 module.exports = {userRoutes, loggedUsers};

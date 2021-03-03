@@ -7,7 +7,7 @@ const blogSchema = mongoose.Schema({
     },
     userId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "user",
+        ref: "reg_user",
         default: null
     },
     date:{

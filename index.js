@@ -24,7 +24,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 // Routers
 app.use('/auth', userRoutes);
-app.use('/', blogRoutes);
+app.use('/auth/profile', blogRoutes);
 
 // setting path for static files
 app.use(express.static(path.join(__dirname,'public')));
