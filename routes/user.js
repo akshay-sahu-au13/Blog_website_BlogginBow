@@ -3,6 +3,7 @@ const router = express.Router();
 const path = require("path");
 const config = require('../config/config');
 const User = require('../models/user');
+const Profile = require('../models/profile_info');
 const bcrypt = require('bcryptjs');
 const {auth, authRole} = require('../auth/auth');
 const { check, validationResult } = require('express-validator/check');
@@ -146,7 +147,7 @@ router.get('/admin', (req, res)=> {
 
 router.get('/profile', auth, async (req, res) => {
     const user = await User.findById({ _id: req.user })
-    res.render('profile', { title: `${user.firstName}'s profile`, layout, user });
+    res.render('profile1', { title: `${user.firstName}'s profile`, layout, user });
 });
 
 

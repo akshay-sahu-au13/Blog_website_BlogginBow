@@ -12,7 +12,7 @@
             </ul>
         </section>
     </div>
-
+    -----------------------------------------------------------------
 
 </div> --}}
 
@@ -36,10 +36,10 @@
                     <a href="/">Home</a>
                 </li>
                 <li>
-                    <a href="about.html">About</a>
+                    <a href="/auth/edit">Edit Profile</a>
                 </li>
                 <li>
-                    <a href="#read-blogs">Read Blogs</a>
+                    <a href="/auth/allblogs">Your Blogs</a>
                 </li>
                 <li>
                     <a href="/auth/login">Login</a>
@@ -56,7 +56,7 @@
 
 <!-- Page Header -->
 <!-- Set your background image for this header on the line below. -->
-<header class="intro-header" style="background-image: url('img/home-bg.jpg')">
+<header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -70,8 +70,32 @@
     </div>
 </header>
 
+<div class="container-fluid">
+
+    <div class="bio">
+
+        <div class="profilepic">
+            <form action="/auth/profile" method="POST" enctype="multipart/form-data">
+                <input type="file" class="form-control" name="dp">
+            </form>
+            <img src="/img/upload-dp-icon.png" alt="profile-pic" height="100" width="100">
+        </div>
+
+
+        <div class="about">
+            <h2>{{user.firstName}} {{user.lastName}}</h2>
+            <span>@</span>{{user.email}}
+            <p>{{userinfo.about}}</p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
 <!-- Main Content -->
-<div class="container" id="read-blogs">
+{{!-- <div class="container" id="read-blogs">
     <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             <div class="post-preview">
@@ -179,4 +203,4 @@
 <script src="js/contact_me.js"></script>
 
 <!-- Theme JavaScript -->
-<script src="js/clean-blog.min.js"></script>
+<script src="js/clean-blog.min.js"></script> --}}
