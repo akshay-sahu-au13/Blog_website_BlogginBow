@@ -12,6 +12,21 @@ const { userInfo } = require('os');
 const { request } = require('http');
 const loggedUsers = {};
 const layout = path.join('layouts', 'index');
+const multer = require('multer');
+
+const Storage = multer.diskStorage({
+    destination: "./public/uploads/",
+    filename: (req, file, cb) => {
+        cb(null, file.fieldname + "_" + Date.now() + path.extname(file.originalname))
+    }
+});
+
+// Init file upload
+
+let upload = multer({
+    storage: Storage,
+}).single('dp');
+
 
 // -------GET SIGNUP---------
 router.get('/signup', (req, res) => {
@@ -156,24 +171,32 @@ router.get('/profile/update', (req, res)=> {
     res.render('updprofile', {layout, title: "Update info"});
 });
 
-router.post('/profile/update',auth, async(req, res)=> {
-    const user = await User.findById({_id:req.user})
-    const info = new Profile({
-        contact: req.body.contact,
-        about: req.body.about,
-        address: {
-            street: req.body.street,
-            state: req.body.state,
-            city: req.body.city,
-            zip: req.body.zip
-        },
-        image: req.body.dp,
-        facebook: req.body.facebook,
-        userId: req.user
-    });
+router.post('/profile/update', async(req, res)=> {
+    // const user = await User.findById({_id:req.user})
+    upload(req, res, err => {
+        if (err){
+            res.render('updprofile', {layout, title:"Update info", msg:err} );
+        } else {
+            console.log(req.file);
+            res.render('updprofile', {title:"Update info", layout, msg:"Image uploaded succesfully"})
+        }
+    })
+    // const info = new Profile({
+    //     contact: req.body.contact,
+    //     about: req.body.about,
+    //     address: {
+    //         street: req.body.street,
+    //         state: req.body.state,
+    //         city: req.body.city,
+    //         zip: req.body.zip
+    //     },
+    //     image: req.file.dp,
+    //     facebook: req.body.facebook,
+    //     userId: req.user
+    // });
 
-    await info.save();
-    res.render('profile', {layout, title:"Profile", info})
+    // await info.save();
+    // res.render('profile', {layout, title:"Profile", info})
 });
 
 router.get('/logout', async(req, res)=> {

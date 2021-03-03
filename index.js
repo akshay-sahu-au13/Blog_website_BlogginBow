@@ -35,16 +35,19 @@ app.set('views', path.join(__dirname,'views'));
 
 // hbs.registerPartial(partials,partialPath);
 
-// let Storage = multer.diskStorage({
-//     destination: "./public/uploads/",
-//     filename: (req, file, cb => {
-//         cb(null, file.fieldname + "_" + Date.now() + path.extname(file.originalname))
-//     })
-// });
+// Setting storage engine
+const Storage = multer.diskStorage({
+    destination: "./public/uploads/",
+    filename: (req, file, cb) => {
+        cb(null, file.fieldname + "_" + Date.now() + path.extname(file.originalname))
+    }
+});
 
-// let upload = multer({
-//     storage: Storage,
-// }).single('file');
+// Init file upload
+
+let upload = multer({
+    storage: Storage,
+}).single('dp');
 
 app.get('/', (req, res)=> {
     console.log(loggedUsers)

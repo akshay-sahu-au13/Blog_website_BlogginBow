@@ -315,7 +315,6 @@ input[type="checkbox"]:not(:checked) + label, input[type="checkbox"]:checked + l
 }
 
 .blog-form {
-  /* height: 120vh; */
   width: 60vw;
   margin: 30px auto;
   padding: 25px;
