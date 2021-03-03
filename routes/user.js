@@ -147,9 +147,12 @@ router.get('/admin', (req, res)=> {
 
 router.get('/profile', auth, async (req, res) => {
     const user = await User.findById({ _id: req.user })
-    res.render('profile1', { title: `${user.firstName}'s profile`, layout, user });
+    res.render('profile', { title: `${user.firstName}'s profile`, layout, user });
 });
 
+router.get('/profile/update', (req, res)=> {
+    res.render('updprofile', {layout, title: "Update info"});
+});
 
 router.get('/logout', async(req, res)=> {
 

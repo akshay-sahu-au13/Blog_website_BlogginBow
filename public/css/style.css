@@ -38,6 +38,10 @@ span {
     text-transform: uppercase;
 }
 
+.updateinfo {
+  padding: 40px ;
+}
+
 /*------------------------------------------------------------------
 [ Login Form ]*/
 

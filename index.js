@@ -9,6 +9,7 @@ const cookie = require( 'cookie-parser' );
 const PORT = process.env.PORT || 5100;
 const hbs = require('hbs');
 const partialPath = path.join(__dirname,'../views/partials');
+const multer = require('multer');
 
 // Connecting to MongoDB database
 MongoInit();
@@ -33,6 +34,17 @@ app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname,'views'));
 
 // hbs.registerPartial(partials,partialPath);
+
+// let Storage = multer.diskStorage({
+//     destination: "./public/uploads/",
+//     filename: (req, file, cb => {
+//         cb(null, file.fieldname + "_" + Date.now() + path.extname(file.originalname))
+//     })
+// });
+
+// let upload = multer({
+//     storage: Storage,
+// }).single('file');
 
 app.get('/', (req, res)=> {
     console.log(loggedUsers)
