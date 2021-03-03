@@ -171,8 +171,8 @@ router.get('/profile/update', (req, res)=> {
     res.render('updprofile', {layout, title: "Update info"});
 });
 
-router.post('/profile/update',auth,upload, async(req, res)=> {
-    const user = await User.findById({_id:req.user})
+router.post('/profile/update',auth, upload, async(req, res)=> {
+    const user = await User.findById({_id:req.user});
     console.log(user) //TEST: to check the user info -will remove it soon
 
     const info = new Profile({
