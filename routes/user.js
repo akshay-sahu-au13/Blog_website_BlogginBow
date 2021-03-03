@@ -171,32 +171,33 @@ router.get('/profile/update', (req, res)=> {
     res.render('updprofile', {layout, title: "Update info"});
 });
 
-router.post('/profile/update', async(req, res)=> {
-    // const user = await User.findById({_id:req.user})
-    upload(req, res, err => {
-        if (err){
-            res.render('updprofile', {layout, title:"Update info", msg:err} );
-        } else {
-            console.log(req.file);
-            res.render('updprofile', {title:"Update info", layout, msg:"Image uploaded succesfully"})
-        }
-    })
-    // const info = new Profile({
-    //     contact: req.body.contact,
-    //     about: req.body.about,
-    //     address: {
-    //         street: req.body.street,
-    //         state: req.body.state,
-    //         city: req.body.city,
-    //         zip: req.body.zip
-    //     },
-    //     image: req.file.dp,
-    //     facebook: req.body.facebook,
-    //     userId: req.user
-    // });
+router.post('/profile/update',auth,upload, async(req, res)=> {
+    const user = await User.findById({_id:req.user})
+    console.log(user)
+    // upload(req, res, err => {
+    //     if (err){
+    //         res.render('updprofile', {layout, title:"Update info", msg:err} );
+    //     } else {
+    //         console.log(req.file);
+    //         res.render('updprofile', {title:"Update info", layout, msg:"Image uploaded succesfully"})
+    //     }
+    // })
+    const info = new Profile({
+        contact: req.body.contact,
+        about: req.body.about,
+        address: {
+            street: req.body.street,
+            state: req.body.state,
+            city: req.body.city,
+            zip: req.body.zip
+        },
+        image: req.file,
+        facebook: req.body.facebook,
+        userId: user._id
+    });
 
-    // await info.save();
-    // res.render('profile', {layout, title:"Profile", info})
+    await info.save();
+    res.render('profile1', {layout, title:"Profile", info})
 });
 
 router.get('/logout', async(req, res)=> {
