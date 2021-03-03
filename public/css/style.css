@@ -299,3 +299,35 @@ input[type="checkbox"]:not(:checked) + label, input[type="checkbox"]:checked + l
     box-shadow: none!important;
 }
 
+/* -------------------------------------------------------------- */
+/* --------------------------Blog CMS --------------------------- */
+/* -------------------------------------------------------------- */
+.write-blog{
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+
+.right-panel {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 40%;
+}
+
+.blog-form {
+  /* height: 120vh; */
+  width: 60vw;
+  margin: 30px auto;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.ta-body {
+  height: 200px;
+}
+
+.ta-desc {
+  height: 100px;
+}

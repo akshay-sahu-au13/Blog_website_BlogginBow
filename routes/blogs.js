@@ -32,7 +32,7 @@ router.post('/writeblog', auth, async(req, res)=> {
         blog
     };
 
-    res.render('blogs', data);
+    res.render('writeblog', data);
 
 });
 
