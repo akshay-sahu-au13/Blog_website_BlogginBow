@@ -52,7 +52,7 @@ router.post('/signup',
                 errors: errors.array(),
                 message: 'Unable to create user!'
             });
-        }
+        };
 
         try {
 
