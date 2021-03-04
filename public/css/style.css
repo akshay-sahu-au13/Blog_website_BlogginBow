@@ -219,7 +219,7 @@ input[type="checkbox"]:not(:checked) + label, input[type="checkbox"]:checked + l
     letter-spacing: 0.15em;
       color: #6e6d6d ;
       display: inline-block;
-      background-color: rgb(253, 245, 220);
+      background-color: #fdf5dc;
       padding: 10px 20px;
       font-family: "Montserrat";
       font-size: 13px;
@@ -245,12 +245,12 @@ input[type="checkbox"]:not(:checked) + label, input[type="checkbox"]:checked + l
   /* ------------------------------PROFILE PAGE 1--------------------------------- */
   /* ----------------------------------------------------------------------------- */
 
-  /* body{
-    margin-top:20px;
+  body{
+    /* margin-top:20px; */
     color: #1a202c;
     text-align: left;
-    background-color: #e2e8f0;    
-} */
+    /* background-color: #fdf5dc;     */
+}
 .main-body {
     padding: 15px;
 }
@@ -329,4 +329,14 @@ input[type="checkbox"]:not(:checked) + label, input[type="checkbox"]:checked + l
 
 .ta-desc {
   height: 100px;
+}
+
+/* ----------------------------------Profile page edits-------------------------------- */
+.main-body {
+  margin-top: 50px;
+}
+
+.profile-body {
+  background-image: url('/img/home-bg.jpg');
+  opacity: 80%;
 }

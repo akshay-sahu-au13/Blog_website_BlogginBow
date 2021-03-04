@@ -10,6 +10,7 @@ const PORT = process.env.PORT || 5100;
 const hbs = require('hbs');
 const partialPath = path.join(__dirname,'../views/partials');
 const multer = require('multer');
+const methodOverride  = require('method-override');
 
 // Connecting to MongoDB database
 MongoInit();
@@ -21,6 +22,8 @@ app.use( cookie() );
 // body-parser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
+// Method override
+app.use(methodOverride('_method'));
 
 // Routers
 app.use('/auth', userRoutes);

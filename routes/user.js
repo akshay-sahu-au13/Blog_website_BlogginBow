@@ -142,7 +142,7 @@ router.post('/login',
 
             const token = await jwt.sign(user.id, config.secret);
             // console.log(token);
-            res.cookie('token', token, { maxAge: 30000 });
+            res.cookie('token', token, { maxAge: 600000 });
 
             loggedUsers[user._id] = true;
             console.log("Logged users: ", loggedUsers);
@@ -174,6 +174,7 @@ router.get('/user', auth, async (req, res) => {
 })
 
 router.get('/user/profile', auth, async (req, res) => {
+    console.log(req.cookies)
     try {
         const info = await Profile.findOne({ userId: req.user });
         const user = await User.findById({ _id: req.user });
@@ -192,25 +193,54 @@ router.get('/user/update/:id', auth, async (req, res) => {
 });
 
 router.post('/user/update/:id', auth, upload, async (req, res) => {
-    const user = await User.findById({ _id: req.user });
-    console.log(user) //TEST: to check the user info -will remove it soon
+    const user = await User.findById({ _id: req.params.id });
+    let info = await Profile.findOne({userId:req.params.id});
+    console.log(user) //TEST: to check the user info - will remove it soon
+    if (!info) {
+        info = new Profile ({ 
 
-    const info = new Profile({
-        contact: req.body.contact,
-        about: req.body.about,
-        address: {
-            street: req.body.street,
-            state: req.body.state,
-            city: req.body.city,
-            zip: req.body.zip
-        },
-        image: req.file.filename,
-        facebook: req.body.facebook,
-        userId: user._id
-    });
+            contact: req.body.contact,
+            about: req.body.about,
+            address: {
+                street: req.body.street,
+                state: req.body.state,
+                city: req.body.city,
+                zip: req.body.zip
+            },
+            image: req.file.filename,
+            facebook: req.body.facebook,
+            userId: user._id
+        
 
-    await info.save();
-    res.render('profile1', { layout, title: "Profile", info, user })
+        });
+        await info.save()
+    } else {
+
+        info = await Profile.findOneAndUpdate({userId:user._id},{
+           "$set": { 
+    
+               contact: req.body.contact,
+               about: req.body.about,
+               address: {
+                   street: req.body.street,
+                   state: req.body.state,
+                   city: req.body.city,
+                   zip: req.body.zip
+               },
+               image: req.file.filename,
+               facebook: req.body.facebook,
+               userId: user._id
+           
+    
+           }
+       });
+    }
+
+
+    // await info.save();
+    // res.render('profile1', { layout, title: "Profile", user })
+    res.redirect('/auth/user/profile');
+
 });
 
 router.get('/logout', async (req, res) => {

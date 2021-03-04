@@ -21,7 +21,7 @@ const profileInfo = mongoose.Schema({
     },
     contact: {
         type: Number,
-        default: "Please update the Number"
+
     },
     facebook: {
         type: String,
