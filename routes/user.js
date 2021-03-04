@@ -147,7 +147,7 @@ router.post('/login',
             loggedUsers[user._id] = true;
             console.log("Logged users: ", loggedUsers );
 
-            res.redirect('/auth/profile');
+            res.redirect('/auth/user');
 
         } catch (error) {
             console.log(error.message);
@@ -162,16 +162,23 @@ router.get('/admin', (req, res)=> {
     res.render('admin', {title:"Admin", layout})
 });
 
-router.get('/profile', auth, async (req, res) => {
-    const user = await User.findById({ _id: req.user })
+router.get('/user',auth, async(req,res)=> {
+    const user = await User.findById({ _id: req.user });
+    res.render('profile', { title: `${user.firstName}'s profile`, layout, user });
+})
+
+router.get('/user/profile', auth, async (req, res) => {
+    const user = await User.findById({ _id: req.user });
     res.render('profile1', { title: `${user.firstName}'s profile`, layout, user });
 });
 
-router.get('/profile/update', (req, res)=> {
-    res.render('updprofile', {layout, title: "Update info"});
+router.get('/user/update/:id',auth, async(req, res)=> {
+    const user = await User.findById({ _id: req.user });
+    const info = await Profile.findById({userId:req.user});
+    res.render('updprofile', {layout, title: "Update info", user, info});
 });
 
-router.post('/profile/update',auth, upload, async(req, res)=> {
+router.post('/user/update/:id',auth, upload, async(req, res)=> {
     const user = await User.findById({_id:req.user});
     console.log(user) //TEST: to check the user info -will remove it soon
 
