@@ -5,7 +5,7 @@ const config = require('../config/config');
 const User = require('../models/user');
 const Profile = require('../models/profile_info');
 const bcrypt = require('bcryptjs');
-const {auth, authRole} = require('../auth/auth');
+const { auth, authRole } = require('../auth/auth');
 const { check, validationResult } = require('express-validator/check');
 const jwt = require('jsonwebtoken');
 const { userInfo } = require('os');
@@ -72,7 +72,7 @@ router.post('/signup',
                 lastName: req.body.lastName,
                 email: req.body.email,
                 gender: req.body.gender,
-                role:req.body.role
+                role: req.body.role
             });
 
             user.password = bcrypt.hashSync(req.body.password, 9);
@@ -94,9 +94,9 @@ router.get('/login', (req, res) => {
     if (req.cookies.token) {
         console.log("cookies available", req.cookies)
         if (loggedUsers[jwt.verify(req.cookies['token'], config.secret)] == true) {
-            res.redirect('/auth/profile');
+            res.redirect('/auth/user');
         } else {
-            res.render('login', {msg: "Logged out", title:"Login", layout});
+            res.render('login', { msg: "Logged out", title: "Login", layout });
         }
     } else {
         console.log('No cookies')
@@ -109,7 +109,7 @@ router.post('/login',
     [
         check('email', 'Please enter the email').isEmail(),
         check('password', 'Please enter the password').isLength({ min: 6 })  // have to make room for errors in hbs
-    ], 
+    ],
     authRole,
     async (req, res) => {
 
@@ -145,41 +145,54 @@ router.post('/login',
             res.cookie('token', token, { maxAge: 30000 });
 
             loggedUsers[user._id] = true;
-            console.log("Logged users: ", loggedUsers );
+            console.log("Logged users: ", loggedUsers);
 
             res.redirect('/auth/user');
 
         } catch (error) {
             console.log(error.message);
-            res.render('login', {title: 'Login', layout, msg: "Error while Login..."});
+            res.render('login', { title: 'Login', layout, msg: "Error while Login..." });
         };
 
     });
 
 // Admin Login
 
-router.get('/admin', (req, res)=> {
-    res.render('admin', {title:"Admin", layout})
+router.get('/admin', (req, res) => {
+    res.render('admin', { title: "Admin", layout })
 });
 
-router.get('/user',auth, async(req,res)=> {
-    const user = await User.findById({ _id: req.user });
-    res.render('profile', { title: `${user.firstName}'s profile`, layout, user });
+router.get('/user', auth, async (req, res) => {
+    try {
+        const user = await User.findById({ _id: req.user });
+    res.render('user', { title: `${user.firstName}'s profile`, layout, user });
+
+    } catch (error) {
+        console.log(error.message);
+        res.render('login', { title: 'Login', layout, msg: "Error while Login..." });
+    };
 })
 
 router.get('/user/profile', auth, async (req, res) => {
-    const user = await User.findById({ _id: req.user });
-    res.render('profile1', { title: `${user.firstName}'s profile`, layout, user });
+    try {
+        const info = await Profile.findOne({ userId: req.user });
+        const user = await User.findById({ _id: req.user });
+        res.render('profile1', { title: `${user.firstName}'s profile`, layout, info, user });
+
+    } catch (error) {
+        console.log(error.message);
+        res.render('login', { title: 'Login', layout, msg: "Error while Login..." });
+    };
 });
 
-router.get('/user/update/:id',auth, async(req, res)=> {
+router.get('/user/update/:id', auth, async (req, res) => {
     const user = await User.findById({ _id: req.user });
-    const info = await Profile.findById({userId:req.user});
-    res.render('updprofile', {layout, title: "Update info", user, info});
+    const info = await Profile.findOne({ userId: req.user });
+    res.render('updprofile', { layout, title: "Update info", user, info });
 });
 
-router.post('/user/update/:id',auth, upload, async(req, res)=> {
-    const user = await User.findById({_id:req.user});
+router.post('/user/update/:id', auth, upload, async (req, res) => {
+    const user = await User.findById({ _id: req.user });
     console.log(user) //TEST: to check the user info -will remove it soon
 
     const info = new Profile({
@@ -197,22 +210,22 @@ router.post('/user/update/:id',auth, upload, async(req, res)=> {
     });
 
     await info.save();
-    res.render('profile1', {layout, title:"Profile", info, user})
+    res.render('profile1', { layout, title: "Profile", info, user })
 });
 
-router.get('/logout', async(req, res)=> {
+router.get('/logout', async (req, res) => {
 
     loggedUsers[jwt.verify(req.cookies['token'], config.secret)] = false;
 
-        res.redirect('/auth/login');
+    res.redirect('/auth/login');
     console.log(loggedUsers); // to check if the id is set to false or not
 
 });
 
-router.get('/profile/writeblog', (req, res)=> {
-    res.render('writeblog', {layout, title:"Write blog here"})
+router.get('/profile/writeblog', (req, res) => {
+    res.render('writeblog', { layout, title: "Write blog here" })
 })
 
 userRoutes = router;
 
-module.exports = {userRoutes, loggedUsers};
+module.exports = { userRoutes, loggedUsers };

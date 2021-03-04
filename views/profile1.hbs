@@ -22,7 +22,7 @@
                                 <p class="text-secondary mb-1">@ {{user.email}}</p>
                                 <p class="text-muted font-size-sm">{{info.address.street}}, {{info.address.city}},
                                     {{info.address.state}}, {{info.address.zip}}</p>
-                                <a href="/auth/profile/update" class="btn btn-primary">Update profile</a>
+                                <a href="/auth/user/update/{{user._id}}" class="btn btn-primary">Update profile</a>
                                 <a href="/auth/profile/update" class="btn btn-outline-primary">Reset Password</a>
                             </div>
                         </div>

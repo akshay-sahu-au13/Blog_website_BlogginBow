@@ -1,6 +1,11 @@
 const mongoose = require('mongoose');
 
 const profileInfo = mongoose.Schema({
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "reg_user",
+        default: null
+    },
     about: {
         type: String,
         default: "Tell us about yourself..."
@@ -22,11 +27,7 @@ const profileInfo = mongoose.Schema({
         type: String,
         default: "None"
     },
-    userId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "reg_user",
-        default: null
-    },
+
     image: String
 
 });
