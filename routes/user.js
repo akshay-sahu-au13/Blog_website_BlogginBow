@@ -127,8 +127,8 @@ router.get('/login', (req, res) => {
 
 router.post('/login',
     [
-        check('email', 'Please enter the email').isEmail(),
-        check('password', 'Please enter the password').isLength({ min: 6 })  // have to make room for errors in hbs
+        check('email', 'Please enter a valid email').isEmail(),
+        check('password', 'Please enter a valid password').isLength({ min: 6 })  // have to make room for errors in hbs
     ],
     authRole,
     async (req, res) => {
@@ -137,10 +137,11 @@ router.post('/login',
 
         if (!errors.isEmpty()) {
             console.log(errors.array());
+
             return res.status(400).render('login', {
                 layout,
                 title: "Err Login",
-                errors: errors.array(),
+                error: errors.array()[0].msg,
                 message: 'Unable to create user!'
             });
         }
@@ -156,7 +157,7 @@ router.post('/login',
             const isMatch = bcrypt.compareSync(req.body.password, user.password);
 
             if (!isMatch) {
-                return res.render('login', { title: "Login", layout, data:{msg: "You've entered Incorrect password"} });
+                return res.render('login', { title: "Login", layout, error:"You've entered Incorrect password" });
             };
 
 
