@@ -276,6 +276,10 @@ router.get('/profile/writeblog', (req, res) => {
     res.render('writeblog', { layout, title: "Write blog here" })
 })
 
+router.get('/user/profile/pwdreset', (req, res)=> {
+    res.render('pwdreset', {layout, title:"Reset Password"});
+})
+
 userRoutes = router;
 
 module.exports = { userRoutes, loggedUsers };

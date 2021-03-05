@@ -24,7 +24,7 @@
                         <a href="/auth/allblogs">Your Blogs</a>
                     </li>
                     <li>
-                        <a href="/auth/login">Login</a>
+                        <a href="/auth/profile/writeblog">Write a Blog</a>
                     </li>
                     <li>
                         <a href="/auth/logout">Logout</a>
@@ -45,7 +45,7 @@
             <!-- Breadcrumb -->
             <nav aria-label="breadcrumb" class="main-breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item"><a href="/auth/user">Home</a></li>
                     <li class="breadcrumb-item"><a href="javascript:void(0)">User</a></li>
                     <li class="breadcrumb-item active" aria-current="page">User Profile</li>
                 </ol>
@@ -64,7 +64,8 @@
                                     <p class="text-muted font-size-sm">{{info.address.street}}, {{info.address.city}},
                                         {{info.address.state}}, {{info.address.zip}}</p>
                                     <a href="/auth/user/update/{{user._id}}" class="btn btn-primary">Update profile</a>
-                                    <a href="/auth/profile/update" class="btn btn-outline-primary">Reset Password</a>
+                                    <a href="/auth/user/profile/pwdreset" class="btn btn-outline-primary">Reset
+                                        Password</a>
                                 </div>
                             </div>
                         </div>
