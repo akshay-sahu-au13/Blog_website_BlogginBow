@@ -48,12 +48,12 @@
         <section>
 
             <hgroup>
-                <h2>{{data.msg}}{{message}}</h2>
+                <h2>{{data.msg}}</h2>
                 <h2>PASSWORD RESET</h2>
                 <p>Please enter your details to Reset the Password</p>
             </hgroup>
 
-            <form action="/auth/login" method="post" class="log-form">
+            <form action="/auth/user/profile/pwdreset" method="post" class="log-form">
 
                 <div class="group log-input">
                     <input type="password" id="oldpwd" name="oldpwd" placeholder="Enter your Old Password">

@@ -278,8 +278,38 @@ router.get('/profile/writeblog', (req, res) => {
     res.render('writeblog', { layout, title: "Write blog here" })
 })
 
-router.get('/user/profile/pwdreset', (req, res)=> {
+router.get('/user/profile/pwdreset',auth, (req, res)=> {
     res.render('pwdreset', {layout, title:"Reset Password"});
+})
+
+router.post('/user/profile/pwdreset',auth, async(req, res)=> {
+
+    try {
+        const user = await User.findById({_id: req.user});
+        const isMatch = await bcrypt.compare(req.body.oldpwd, user.password);
+        if (!isMatch){
+            return res.render('pwdreset', {title:"Invalid password", layout, data:{msg:"Invalid password! Please enter the correct password..."}})
+        } else {
+            if (req.body.newpwd === req.body.re-newpwd){
+                await User.findOneAndUpdate({_id:req.user},{
+                    '$set': {
+                        password: bcrypt.hashSync(req.body.newpwd, 10)
+                    }
+                })
+                res.render('login', {layout, title: `${user.firstName} Re-login`, data: {msg:`Password changed successfully, please re-login with the NEW PASSWORD...`}})
+
+            } else{
+                return res.render('pwdreset', {title:"Reset password", layout, data: {msg:"Re-enter the password, didn't match!"}});
+            }
+        }
+        
+    } catch (error) {
+        if(error) {
+            console.log(`ERROR: `,error.message);
+            throw error;
+        } // add render route
+        
+    }
 })
 
 userRoutes = router;
