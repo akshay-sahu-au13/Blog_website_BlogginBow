@@ -27,17 +27,14 @@
 
     <link rel="stylesheet" href="/css/style.css">
 
-    <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places" type="text/javascript">
-        <script type="text/javascript">
-            function initialize() {
+    <script type="text/javascript">
+        var showError = function () {
+            var err = document.getElementsByClassName("error")[0];
 
-        var options = {types: ['(cities)'],
-                        componentRestrictions: {country: "us"}
-                        };
-
-        var input = document.getElementById('searchTextField');
-        var autocomplete = new google.maps.places.Autocomplete(input, options);
-    };
+            if (err) {
+                err.className = "error show";
+            }
+        };
     </script>
 
 
@@ -50,7 +47,7 @@
 
 </head>
 
-<body>
+<body onload="showError();">
     {{!-- {{>header}} --}}
     {{{body}}}
     {{!-- {{>footer}} --}}
