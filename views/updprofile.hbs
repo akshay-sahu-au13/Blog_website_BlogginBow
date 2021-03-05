@@ -12,13 +12,13 @@
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="margin-bottonm: 0;">
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
                         <a href="/auth/user">Home</a>
                     </li>
                     <li>
-                        <a href="/auth/user">Back to Profile</a>
+                        <a href="/auth/user/profile">Back to Profile</a>
                     </li>
                     <li>
                         <a href="/auth/allblogs">Your Blogs</a>
@@ -36,9 +36,12 @@
         <!-- /.container -->
     </nav>
 
-    <div class=" updateinfo log-form">
-        <span>{{msg}}</span>
-        <form action=" ./{{user._id}}" method="POST" enctype="multipart/form-data">
+    <div class=" container ">
+        <hgroup>
+            <h2>{{data.msg}}</h2>
+            <h3>Please enter your details to update your profile</h3>
+        </hgroup>
+        <form action=" ./{{user._id}}" method="POST" enctype="multipart/form-data" class="log-form updateinfo">
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="contact">Contact</label>

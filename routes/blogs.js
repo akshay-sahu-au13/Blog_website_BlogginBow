@@ -15,7 +15,7 @@ router.get('/allblogs', auth, async(req, res)=> {
     res.render('blogs', data);
 });
 
-router.post('/writeblog', auth, async(req, res)=> {
+router.post('/auth/profile/writeblog', auth, async(req, res)=> {
 
     const blog = new Blog({
         title: req.body.title,
@@ -35,5 +35,13 @@ router.post('/writeblog', auth, async(req, res)=> {
     res.render('writeblog', data);
 
 });
+
+router.get('/auth/profile/editblog/:id', auth, (req, res)=> {
+    res.render()
+})
+
+router.post('/auth/profile/editblog/:id', auth, (req, res)=> {
+
+})
 
 module.exports = router;
