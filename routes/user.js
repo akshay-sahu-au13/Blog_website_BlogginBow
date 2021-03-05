@@ -90,21 +90,28 @@ router.post('/signup',
     });
 
 // -----------------User/Admin LOGIN Page - GET------------------- //
-router.get('/login', (req, res) => {
-
+router.get('/login', async(req, res) => {
+    // const user = await User.findOne({email:req.body.email});
     // checking if user is already logged in
+try {
     if (req.cookies.token) {
-        console.log("cookies available", req.cookies)
-        console.log(loggedUsers)
+        console.log("LOGIN_GET cookies available", req.cookies)
+        console.log("LOGIN_GET loggedUsers: ", loggedUsers)
         if (loggedUsers[jwt.verify(req.cookies['token'], config.secret)] == true) {
             res.redirect('/auth/user');
         } else {
             res.render('login', { msg: "Logged out", title: "Login", layout });
         }
     } else {
-        console.log('No cookies')
+        console.log('LOGIN_GET: No cookies', req.cookies)
         res.render('login', { title: "Login", layout });
     }
+} catch (error) {
+    if (error) {
+        console.log(error.message);
+        throw error
+    }
+}
 
     // // SESSION BASED AUTHENTICATION
 
@@ -162,7 +169,7 @@ router.post('/login',
 
 
             const token = await jwt.sign(user.id, config.secret);
-            console.log(token);
+            console.log("Login POST(token): ",token);
             // storing token in cookie
             res.cookie('token', token, { maxAge: 600000 });
 
@@ -171,7 +178,7 @@ router.post('/login',
             // console.log(`Session: ${req.session} :::: Req.session: ${req.session.token}`)
 
             loggedUsers[user._id] = true;
-            console.log("Logged users: ", loggedUsers);
+            console.log("Logged users (LOGIN_POST): ", loggedUsers);
 
             res.redirect('/auth/user');
 
@@ -202,7 +209,8 @@ router.get('/user', auth, async (req, res) => {
 
 // -----------------User PROFILE Page - GET------------------- //
 router.get('/user/profile', auth, async (req, res) => {
-    console.log(req.cookies)
+    console.log("Cookies froM PROFILE-GET: ",req.cookies)
+    console.log("loggedUsers from PROFILE-GET: ", loggedUsers)
     try {
         const info = await Profile.findOne({ userId: req.user });
         const user = await User.findById({ _id: req.user });
@@ -278,13 +286,15 @@ router.post('/user/update/:id', auth, upload, async (req, res) => {
 
 // ---------------User LOGOUT page - GET----------------- //
 
-router.get('/logout', async (req, res) => {
+router.get('/logout',auth, async (req, res) => {
 
     loggedUsers[jwt.verify(req.cookies['token'], config.secret)] = false;
-    req.cookies.token = "";
+    loggedUsers[req.user] == false;
+    await res.clearCookie('token');
 
     res.redirect('/auth/login');
-    console.log(loggedUsers); // to check if the id is set to false or not
+    console.log("Cookies after LOGOUT: ",req.cookies)
+    console.log("LoggedUser after Logout: ",loggedUsers); // to check if the id is set to false or not
 
 });
 

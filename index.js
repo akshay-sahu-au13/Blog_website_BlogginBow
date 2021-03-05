@@ -53,7 +53,7 @@ let upload = multer({
 }).single('dp');
 
 app.get('/', (req, res)=> {
-    console.log(loggedUsers)
+    console.log("HOME-loggedUsers",loggedUsers)
     res.render('home', {title: " BlogginBow home", layout});
 });
 
