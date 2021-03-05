@@ -95,6 +95,7 @@ router.get('/login', (req, res) => {
     // checking if user is already logged in
     if (req.cookies.token) {
         console.log("cookies available", req.cookies)
+        console.log(loggedUsers)
         if (loggedUsers[jwt.verify(req.cookies['token'], config.secret)] == true) {
             res.redirect('/auth/user');
         } else {
@@ -149,13 +150,13 @@ router.post('/login',
             let user = await User.findOne({ email: req.body.email });
 
             if (!user) {
-                res.render('login', { title: "Login", layout, message: "User not found! Please Signup first" });
+                return res.render('login', { title: "Login", layout, data:{msg: "User not found! Please Signup first"} });
             }
 
             const isMatch = bcrypt.compareSync(req.body.password, user.password);
 
             if (!isMatch) {
-                res.render('login', { title: "Login", layout, message: "Invalid Password" });
+                return res.render('login', { title: "Login", layout, data:{msg: "You've entered Incorrect password"} });
             };
 
 
@@ -279,6 +280,7 @@ router.post('/user/update/:id', auth, upload, async (req, res) => {
 router.get('/logout', async (req, res) => {
 
     loggedUsers[jwt.verify(req.cookies['token'], config.secret)] = false;
+    req.cookies.token = "";
 
     res.redirect('/auth/login');
     console.log(loggedUsers); // to check if the id is set to false or not
@@ -304,7 +306,9 @@ router.post('/user/profile/pwdreset',auth, async(req, res)=> {
         if (!isMatch){
             return res.render('pwdreset', {title:"Invalid password", layout, data:{msg:"Invalid password! Please enter the correct password..."}})
         } else {
-            if (req.body.newpwd === req.body.re-newpwd){
+            console.log(req.body.oldpwd, "is a match!")
+            console.log(req.body)
+            if (req.body.newpwd === req.body.renewpwd){
                 await User.findOneAndUpdate({_id:req.user},{
                     '$set': {
                         password: bcrypt.hashSync(req.body.newpwd, 10)
