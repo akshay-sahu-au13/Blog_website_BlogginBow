@@ -14,6 +14,8 @@ const loggedUsers = {};
 const layout = path.join('layouts', 'index');
 const multer = require('multer');
 
+
+// -- setting up Storage for mukter -- //
 const Storage = multer.diskStorage({
     destination: "./public/uploads/",
     filename: (req, file, cb) => {
@@ -21,21 +23,21 @@ const Storage = multer.diskStorage({
     }
 });
 
-// Init file upload
+// -- Init file upload -- //
 
 let upload = multer({
     storage: Storage,
 }).single('dp');
 
 
-// -------GET SIGNUP---------
+// -------------------User SIGNUP Page- GET------------------ //
 router.get('/signup', (req, res) => {
 
     res.render('signup', { title: "Signup", layout });
 
 });
 
-// -------POST SIGNUP--------
+// -------------------User SIGNUP Page- POST------------------ //
 router.post('/signup',
 
     [
@@ -87,7 +89,7 @@ router.post('/signup',
         }
     });
 
-
+// -----------------User/Admin LOGIN Page - GET------------------- //
 router.get('/login', (req, res) => {
 
     // checking if user is already logged in
@@ -119,6 +121,8 @@ router.get('/login', (req, res) => {
 
 
 });
+
+// -----------------User/Admin LOGIN Page - POST------------------- //
 
 router.post('/login',
     [
@@ -176,12 +180,13 @@ router.post('/login',
 
     });
 
-// Admin Login
+// -----------------ADMIN Profile Page - GET------------------- //
 
 router.get('/admin', (req, res) => {
     res.render('admin', { title: "Admin", layout })
 });
 
+// -----------------User PROFILE/USER Page - GET------------------- //
 router.get('/user', auth, async (req, res) => {
     try {
         const user = await User.findById({ _id: req.user });
@@ -193,6 +198,7 @@ router.get('/user', auth, async (req, res) => {
     };
 })
 
+// -----------------User PROFILE Page - GET------------------- //
 router.get('/user/profile', auth, async (req, res) => {
     console.log(req.cookies)
     try {
@@ -206,12 +212,15 @@ router.get('/user/profile', auth, async (req, res) => {
     };
 });
 
+// ---------------User Profile UPDATE Page - GET----------------- //
+
 router.get('/user/update/:id', auth, async (req, res) => {
     const user = await User.findById({ _id: req.user });
     const info = await Profile.findOne({ userId: req.user });
     res.render('updprofile', { layout, title: "Update info", user, info });
 });
 
+// ---------------User Profile UPDATE Page - POST/PUT----------------- //
 router.post('/user/update/:id', auth, upload, async (req, res) => {
     const user = await User.findById({ _id: req.params.id });
     let info = await Profile.findOne({ userId: req.params.id });
@@ -265,6 +274,8 @@ router.post('/user/update/:id', auth, upload, async (req, res) => {
 
 });
 
+// ---------------User LOGOUT page - GET----------------- //
+
 router.get('/logout', async (req, res) => {
 
     loggedUsers[jwt.verify(req.cookies['token'], config.secret)] = false;
@@ -274,14 +285,17 @@ router.get('/logout', async (req, res) => {
 
 });
 
-router.get('/profile/writeblog', (req, res) => {
+// ---------------User WRITE BLOG page - GET----------------- //
+router.get('/profile/writeblog',auth, (req, res) => {
     res.render('writeblog', { layout, title: "Write blog here" })
 })
 
+// ---------------User PASSWROD RESET page - GET----------------- //
 router.get('/user/profile/pwdreset',auth, (req, res)=> {
     res.render('pwdreset', {layout, title:"Reset Password"});
-})
+});
 
+// ---------------User PASSWROD RESET page - POST/PUT----------------- //
 router.post('/user/profile/pwdreset',auth, async(req, res)=> {
 
     try {
