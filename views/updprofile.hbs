@@ -1,5 +1,4 @@
 <div class="profile-body">
-    <!-- Navigation -->
     <nav class="navbar navbar-default navbar-custom navbar-fixed-top profile_nav">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -13,7 +12,7 @@
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="margin-bottonm: 0;">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
                         <a href="/auth/user">Home</a>
@@ -37,7 +36,7 @@
         <!-- /.container -->
     </nav>
 
-    <div class="container-fluid updateinfo log-form">
+    <div class=" updateinfo log-form">
         <span>{{msg}}</span>
         <form action=" ./{{user._id}}" method="POST" enctype="multipart/form-data">
             <div class="form-row">

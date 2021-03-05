@@ -216,6 +216,7 @@ router.post('/user/update/:id', auth, upload, async (req, res) => {
     const user = await User.findById({ _id: req.params.id });
     let info = await Profile.findOne({ userId: req.params.id });
     console.log(user) //TEST: to check the user info - will remove it soon
+ try {
     if (!info) {
         info = new Profile({
 
@@ -247,7 +248,7 @@ router.post('/user/update/:id', auth, upload, async (req, res) => {
                     city: req.body.city,
                     zip: req.body.zip
                 },
-                image: req.file.filename,
+                image: req.file.filename? req.file.filename: "",
                 facebook: req.body.facebook,
                 userId: user._id
 
@@ -255,11 +256,12 @@ router.post('/user/update/:id', auth, upload, async (req, res) => {
             }
         });
     }
-
-
     // await info.save();
     // res.render('profile1', { layout, title: "Profile", user })
     res.redirect('/auth/user/profile');
+ } catch (error) {
+     if (error) console.log(error.message)
+ }
 
 });
 
