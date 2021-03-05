@@ -90,7 +90,7 @@ router.post('/signup',
 
 router.get('/login', (req, res) => {
 
-    //checking if user is already logged in
+    // checking if user is already logged in
     if (req.cookies.token) {
         console.log("cookies available", req.cookies)
         if (loggedUsers[jwt.verify(req.cookies['token'], config.secret)] == true) {
@@ -102,6 +102,21 @@ router.get('/login', (req, res) => {
         console.log('No cookies')
         res.render('login', { title: "Login", layout });
     }
+
+    // // SESSION BASED AUTHENTICATION
+
+    // if (req.session && req.session.token) {
+    //     console.log(`Session available::::: ${req.session}`);
+    //     if (loggedUsers[jwt.verify(req.session.token, config.secret)] == true) {
+    //         res.redirect('/auth/user');
+    //     } else {
+    //         res.render('login', { msg: "Logged out", title: "Login", layout });
+    //     }
+    // } else {
+    //     console.log('No Session')
+    //     res.render('login', { title: "Login", layout });
+    // }
+
 
 });
 
@@ -141,8 +156,13 @@ router.post('/login',
 
 
             const token = await jwt.sign(user.id, config.secret);
-            // console.log(token);
+            console.log(token);
+            // storing token in cookie
             res.cookie('token', token, { maxAge: 600000 });
+
+            //storing token in express session
+            // req.session.token = token;
+            // console.log(`Session: ${req.session} :::: Req.session: ${req.session.token}`)
 
             loggedUsers[user._id] = true;
             console.log("Logged users: ", loggedUsers);
@@ -151,7 +171,7 @@ router.post('/login',
 
         } catch (error) {
             console.log(error.message);
-            res.render('login', { title: 'Login', layout, msg: "Error while Login..." });
+            res.render('login', { title: 'Login', layout, message: "Error while Login..." });
         };
 
     });
@@ -165,7 +185,7 @@ router.get('/admin', (req, res) => {
 router.get('/user', auth, async (req, res) => {
     try {
         const user = await User.findById({ _id: req.user });
-    res.render('user', { title: `${user.firstName}'s profile`, layout, user });
+        res.render('user', { title: `${user.firstName}'s profile`, layout, user });
 
     } catch (error) {
         console.log(error.message);
@@ -194,10 +214,10 @@ router.get('/user/update/:id', auth, async (req, res) => {
 
 router.post('/user/update/:id', auth, upload, async (req, res) => {
     const user = await User.findById({ _id: req.params.id });
-    let info = await Profile.findOne({userId:req.params.id});
+    let info = await Profile.findOne({ userId: req.params.id });
     console.log(user) //TEST: to check the user info - will remove it soon
     if (!info) {
-        info = new Profile ({ 
+        info = new Profile({
 
             contact: req.body.contact,
             about: req.body.about,
@@ -210,30 +230,30 @@ router.post('/user/update/:id', auth, upload, async (req, res) => {
             image: req.file.filename,
             facebook: req.body.facebook,
             userId: user._id
-        
+
 
         });
         await info.save()
     } else {
 
-        info = await Profile.findOneAndUpdate({userId:user._id},{
-           "$set": { 
-    
-               contact: req.body.contact,
-               about: req.body.about,
-               address: {
-                   street: req.body.street,
-                   state: req.body.state,
-                   city: req.body.city,
-                   zip: req.body.zip
-               },
-               image: req.file.filename,
-               facebook: req.body.facebook,
-               userId: user._id
-           
-    
-           }
-       });
+        info = await Profile.findOneAndUpdate({ userId: user._id }, {
+            "$set": {
+
+                contact: req.body.contact,
+                about: req.body.about,
+                address: {
+                    street: req.body.street,
+                    state: req.body.state,
+                    city: req.body.city,
+                    zip: req.body.zip
+                },
+                image: req.file.filename,
+                facebook: req.body.facebook,
+                userId: user._id
+
+
+            }
+        });
     }
 
 
