@@ -1,0 +1,15 @@
+<div class="container-fluid">
+    <h2>Here are your blogs...</h2>
+    {{{blogs}}}
+    <ul>
+        {{#each blogs}}
+        <li>
+            <h1>{{this.title}}</h1><br>
+        </li>
+        <li>{{this.description}}</li><br>
+        <li>{{this.body}}</li>
+        {{/each}}
+
+    </ul>
+
+</div>

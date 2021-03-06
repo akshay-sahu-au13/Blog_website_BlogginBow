@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const md = require('marked');
 
 const blogSchema = mongoose.Schema({
     title: {
@@ -27,5 +28,13 @@ const blogSchema = mongoose.Schema({
         // required: true
     }
 });
+
+blogSchema.pre('body', function(next){
+    if(this.body){
+        this.body = marked(this.body);
+    }
+
+    next();
+})
 
 module.exports = mongoose.model('user_blog', blogSchema);

@@ -7,14 +7,27 @@ const User = require('../models/user');
 const layout = path.join('layouts', 'index')
 
 
-router.get('/allblogs', auth, async (req, res) => {
-    let user = await User.findById({ _id: req.user });
-    const data = {
-        title: `${user.firstName}'s blogpost`,
-        layout,
-        user
-    };
-    res.render('blogs', data);
+router.get('/auth/profile/userblogs', auth, async (req, res) => {
+    const user = await User.findById({_id:req.user});
+    try {
+        let blogs = await Blog.find({ userId: req.user }).populate(req.user);
+        console.log(blogs);
+        const data = {
+            title: `${user.firstName}'s blogpost`,
+            layout,
+            blogs
+        };
+        console.log(data)
+        res.render('blogs', {
+            title: `${user.firstName}'s blogpost`,
+            layout,
+            blogs
+        });
+    } catch (error) {
+        console.log(error)
+        throw error;
+    }
+
 });
 
 router.post('/auth/profile/writeblog', auth, async (req, res) => {
