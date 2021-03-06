@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const blogSchema = mongoose.Schema({
     title: {
         type: String,
-        required: true
+        // required: true
     },
     userId: {
         type: mongoose.Schema.Types.ObjectId,
@@ -20,11 +20,11 @@ const blogSchema = mongoose.Schema({
     },
     body: {
         type: String,
-        required: true
+        // required: true
     },
     genre: {
         type: String,
-        required: true
+        // required: true
     }
 });
 

@@ -349,6 +349,24 @@ input[type="checkbox"]:not(:checked) + label, input[type="checkbox"]:checked + l
 
 .error{
 
+  font-weight: 100;
+  /* background:#ff9696; */
+  color:rgb(252, 252, 252);
+  text-shadow: blanchedalmond;
+}
+
+.error.show {
+ 
+  color: rgb(255, 20, 20);
+  padding: 10px;
+  font-weight: 600;
+  text-shadow: 1px 0px 3px rgba(247, 138, 138, 0.849);
+
+  /* background:white; */
+  transition: color 1s ease-in;
+}
+
+.msg {
   height:20px;
   font-weight: 500;
   /* background:#ff9696; */
@@ -356,7 +374,7 @@ input[type="checkbox"]:not(:checked) + label, input[type="checkbox"]:checked + l
   text-shadow: blanchedalmond;
 }
 
-.error.show {
+.msg1 {
   display:block;
   color: rgb(255, 20, 20);
   font-weight: 500;
@@ -364,4 +382,21 @@ input[type="checkbox"]:not(:checked) + label, input[type="checkbox"]:checked + l
   /* background:white; */
   transition: color 0.6s ease-in;
 }
+
+/* ------------------------------BLOG FORM------------------------------ */
+
+.blog-form{
+  font-size: 18px;
+  font-family: Montserrat Arial, Helvetica, sans-serif;
+}
+
+/* .blog-form textarea {
+  font-size: 16px;
+  
+} */
+
+.blog-form input, option, textarea {
+  font-size: 16px;
+}
+
 

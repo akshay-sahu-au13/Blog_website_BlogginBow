@@ -11,7 +11,7 @@ const auth = function (req, res, next) {
     //     return res.render('login', { data, layout });
     // }
     if (!req.cookies['token'] ) {
-        data = { msg: "Please login to access profile page!" }
+        data = { msg: "Please login to access the profile page!" }
         return res.render('login', { data, layout });
     }
 

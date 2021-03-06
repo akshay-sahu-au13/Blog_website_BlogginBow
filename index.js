@@ -27,7 +27,7 @@ app.use(methodOverride('_method'));
 
 // Routers
 app.use('/auth', userRoutes);
-app.use('/auth/profile', blogRoutes);
+app.use('/', blogRoutes);
 
 // setting path for static files
 app.use(express.static(path.join(__dirname,'public')));

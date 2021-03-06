@@ -30,9 +30,14 @@
     <script type="text/javascript">
         var showError = function () {
             var err = document.getElementsByClassName("error")[0];
+            var msg = document.getElementsByClassName("msg")[0];
 
             if (err) {
                 err.className = "error show";
+            }
+
+            if (msg) {
+                msg.className = "msg msg1";
             }
         };
     </script>

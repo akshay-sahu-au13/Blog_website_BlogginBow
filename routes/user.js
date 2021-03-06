@@ -95,13 +95,17 @@ router.get('/login', async(req, res) => {
     // checking if user is already logged in
 try {
     if (req.cookies.token) {
-        console.log("LOGIN_GET cookies available", req.cookies)
-        console.log("LOGIN_GET loggedUsers: ", loggedUsers)
+
+        console.log("LOGIN_GET cookies available", req.cookies);
+        console.log("LOGIN_GET loggedUsers: ", loggedUsers);
+
         if (loggedUsers[jwt.verify(req.cookies['token'], config.secret)] == true) {
             res.redirect('/auth/user');
+
         } else {
             res.render('login', { msg: "Logged out", title: "Login", layout });
         }
+
     } else {
         console.log('LOGIN_GET: No cookies', req.cookies)
         res.render('login', { title: "Login", layout });
@@ -218,7 +222,7 @@ router.get('/user/profile', auth, async (req, res) => {
 
     } catch (error) {
         console.log(error.message);
-        res.render('login', { title: 'Login', layout, msg: "Error while Login..." });
+        res.render('login', { title: 'Login', layout, error: "Error while Login..." });
     };
 });
 
@@ -267,7 +271,7 @@ router.post('/user/update/:id', auth, upload, async (req, res) => {
                     city: req.body.city,
                     zip: req.body.zip
                 },
-                image: req.file.filename? req.file.filename: "",
+                image: req.file.filename,  // Need to update the code for no image selected by user
                 facebook: req.body.facebook,
                 userId: user._id
 
@@ -279,7 +283,10 @@ router.post('/user/update/:id', auth, upload, async (req, res) => {
     // res.render('profile1', { layout, title: "Profile", user })
     res.redirect('/auth/user/profile');
  } catch (error) {
-     if (error) console.log(error.message)
+     if (error) {
+        console.log(error.message)
+        throw error
+     }
  }
 
 });
