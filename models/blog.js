@@ -1,10 +1,14 @@
 const mongoose = require('mongoose');
-const md = require('marked');
+const marked = require('marked');
+const slugify = require('slugify')
+const createDomPurify = require('dompurify')
+const { JSDOM } = require('jsdom')
+const dompurify = createDomPurify(new JSDOM().window)
 
 const blogSchema = mongoose.Schema({
     title: {
         type: String,
-        // required: true
+        required: true
     },
     userId: {
         type: mongoose.Schema.Types.ObjectId,
@@ -21,20 +25,37 @@ const blogSchema = mongoose.Schema({
     },
     body: {
         type: String,
-        // required: true
+        required: true
     },
     genre: {
         type: String,
-        // required: true
-    }
+        required: true
+    },
+    markdown: {
+        type: String,
+        default: "Not converted to MD"
+    },
+    slug: {
+        type: String,
+        required: true,
+        unique: true
+      },
+      sanitizedHtml: {
+        type: String,
+        required: true
+      }
 });
 
-blogSchema.pre('body', function(next){
-    if(this.body){
-        this.body = marked(this.body);
+blogSchema.pre('validate', function(next) {
+    if (this.title) {
+      this.slug = slugify(this.title, { lower: true, strict: true })
     }
-
+  
+    if (this.body) {
+      this.sanitizedHtml = dompurify.sanitize(marked(this.body))
+    }
+  
     next();
-})
+  });
 
 module.exports = mongoose.model('user_blog', blogSchema);
