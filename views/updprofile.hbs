@@ -46,29 +46,29 @@
                 <div class="form-group col-md-6">
                     <label for="contact">Contact</label>
                     <input type="Number" class="form-control" id="contact" name="contact" placeholder="Phone number"
-                        value={{info.contact}}>
+                        value="{{info.contact}}">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="About">About</label>
                     <input type="text" class="form-control" id="About" name="about" placeholder="About"
-                        value={{info.about}}>
+                        value="{{info.about}}">
                 </div>
             </div>
             <div class="form-group">
                 <label for="inputAddress">Address</label>
                 <input type="text" class="form-control" name="street" id="inputAddress" placeholder="1234 Main St"
-                    value={{info.address.street}}>
+                    value="{{info.address.street}}">
             </div>
 
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="searchTextField">City</label>
                     <input type="text" class="form-control" name="city" id="searchTextField"
-                        value={{info.address.city}}>
+                        value="{{info.address.city}}">
                 </div>
                 <div class=" form-group col-md-4">
                     <label for="inputState">State</label>
-                    <select id="inputState" name="state" class="form-control" value={{info.address.state}}>
+                    <select id="inputState" name="state" class="form-control" value="{{info.address.state}}">
                         <option selected>Choose...</option>
                         <option>Assam</option>
                         <option>Delhi</option>
@@ -83,12 +83,12 @@
                 </div>
                 <div class=" form-group col-md-2">
                     <label for="inputZip">Zip</label>
-                    <input type="text" class="form-control" name="zip" id="inputZip" value={{info.address.zip}}>
+                    <input type="text" class="form-control" name="zip" id="inputZip" value="{{info.address.zip}}">
                 </div>
             </div>
             <div class="form-group">
                 <div class="form-check">
-                    <input type="file" class="" name="dp" id="dp" value="null">
+                    <input type="file" class="" name="dp" id="dp" value="{{info.image}}">
                     <label class="" for="dp">
                         Select a profile picture
                     </label>
