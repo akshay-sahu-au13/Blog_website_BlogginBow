@@ -305,10 +305,6 @@ router.get('/logout',auth, async (req, res) => {
 
 });
 
-// ---------------User WRITE BLOG page - GET----------------- //
-router.get('/profile/writeblog',auth, (req, res) => {
-    res.render('writeblog', { layout, title: "Write blog here" })
-})
 
 // ---------------User PASSWROD RESET page - GET----------------- //
 router.get('/user/profile/pwdreset',auth, (req, res)=> {
