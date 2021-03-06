@@ -32,7 +32,7 @@ router.get('/auth/profile/userblogs', auth, async (req, res) => {
 
 
 // ---------------User WRITE BLOG page - GET----------------- //
-router.get('/auths/profile/writeblog',auth, (req, res) => {
+router.get('/auth/profile/writeblog',auth, (req, res) => {
     res.render('writeblog', { layout, title: "Write blog here" })
 })
 

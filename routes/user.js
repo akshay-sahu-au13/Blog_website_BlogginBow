@@ -13,6 +13,7 @@ const { request } = require('http');
 const loggedUsers = {};
 const layout = path.join('layouts', 'index');
 const multer = require('multer');
+const blog = require('../models/blog');
 
 
 // -- setting up Storage for mukter -- //
@@ -202,12 +203,13 @@ router.get('/admin', (req, res) => {
 // -----------------User PROFILE/USER Page - GET------------------- //
 router.get('/user', auth, async (req, res) => {
     try {
+        const blogs = await blog.find({userId:req.user});
         const user = await User.findById({ _id: req.user });
-        res.render('user', { title: `${user.firstName}'s profile`, layout, user });
+        res.render('user', { title: `${user.firstName}'s profile`, layout, user, blogs });
 
     } catch (error) {
         console.log(error.message);
-        res.render('login', { title: 'Login', layout, msg: "Error while Login..." });
+        res.render('login', { title: 'Login', layout, msg: "Error while Login...", blogs });
     };
 })
 
