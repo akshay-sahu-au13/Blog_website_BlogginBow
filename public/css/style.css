@@ -363,7 +363,7 @@ input[type="checkbox"]:not(:checked) + label, input[type="checkbox"]:checked + l
   text-shadow: 1px 0px 3px rgba(247, 138, 138, 0.849);
 
   /* background:white; */
-  transition: color 1s ease-in;
+  transition: color 2s ease-in;
 }
 
 .msg {

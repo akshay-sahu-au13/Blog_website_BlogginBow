@@ -1,4 +1,4 @@
-<div class="container-fluid">
+{{!-- <div class="container-fluid">
     <h2>Here are your blogs...</h2>
 
     <ul>
@@ -12,4 +12,20 @@
 
     </ul>
 
+</div> --}}
+<div class="container">
+
+    <div class="post-preview">
+
+        <h2 class="post-title">
+            {{blog.title}}
+        </h2>
+        <h3 class="post-subtitle">
+            {{blog.description}}
+        </h3>
+
+        <p class="post-meta">Posted by <a href="/auth/user/profile/{{user._id}}"></a>{{user.firstName}}</a>
+            on {{blog.date}}</p>
+        <p>{{{blog.sanitizedHtml}}}</p>
+    </div>
 </div>

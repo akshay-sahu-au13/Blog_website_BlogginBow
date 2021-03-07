@@ -65,67 +65,59 @@
                 <li>
                     <div class="post-preview">
 
-                        {{!-- {{blogs}} --}}
-                        {{!--
-                <li>AM I showing up?</li> --}}
+                        <a href="/auth/user/userblogs/{{this._id}}">
+                            <h2 class="post-title">
+                                {{this.title}}
+                            </h2>
+                            <h3 class="post-subtitle">
+                                {{this.description}}
+                            </h3>
+                        </a>
+                        <p class="post-meta">Posted by <a href="/auth/user/profile/{{user._id}}">{{user.firstName}}</a>
+                            on {{this.date}}</p>
+                    </div>
+                </li>
+                {{/each}}
+            </ul>
 
+            {{!-- ---------------------------------------------------------- --}}
+            <div class="post-preview">
 
                 <a href="/auth/user/blog">
                     <h2 class="post-title">
-                        {{this.title}}
+                        Man must explore, and this is exploration at its greatest
                     </h2>
                     <h3 class="post-subtitle">
-                        {{this.description}}
+                        Problems look mighty small from 150 miles up
                     </h3>
                 </a>
-                <p class="post-meta">Posted by <a href="/auth/user/profile/{{user._id}}">{{user.firstName}}</a>
-                    on {{this.date}}</p>
+                <p class="post-meta">Posted by <a href="/auth/user/update/{{user._id}}">{{user.firstName}}</a> on March
+                    1 2021</p>
+            </div>
+            <hr>
+
+            <hr>
+            <div class="post-preview">
+                <a href="post.html">
+                    <h2 class="post-title">
+                        Failure is not an option
+                    </h2>
+                    <h3 class="post-subtitle">
+                        Many say exploration is part of our destiny, but it’s actually our duty to future generations.
+                    </h3>
+                </a>
+                <p class="post-meta">Posted by <a href="/auth/user/update/{{user._id}}">{{user.firstName}}</a> on Feb 8,
+                    2021</p>
+            </div>
+            <hr>
+            <!-- Pager -->
+            <ul class="pager">
+                <li class="next">
+                    <a href="#">Older Posts &rarr;</a>
+                </li>
+            </ul>
         </div>
-        </li>
-        {{/each}}
-
-
-        </ul>
-
-
-        {{!-- ---------------------------------------------------------- --}}
-        <div class="post-preview">
-
-            <a href="/auth/user/blog">
-                <h2 class="post-title">
-                    Man must explore, and this is exploration at its greatest
-                </h2>
-                <h3 class="post-subtitle">
-                    Problems look mighty small from 150 miles up
-                </h3>
-            </a>
-            <p class="post-meta">Posted by <a href="/auth/user/update/{{user._id}}">{{user.firstName}}</a> on March
-                1 2021</p>
-        </div>
-        <hr>
-
-        <hr>
-        <div class="post-preview">
-            <a href="post.html">
-                <h2 class="post-title">
-                    Failure is not an option
-                </h2>
-                <h3 class="post-subtitle">
-                    Many say exploration is part of our destiny, but it’s actually our duty to future generations.
-                </h3>
-            </a>
-            <p class="post-meta">Posted by <a href="/auth/user/update/{{user._id}}">{{user.firstName}}</a> on Feb 8,
-                2021</p>
-        </div>
-        <hr>
-        <!-- Pager -->
-        <ul class="pager">
-            <li class="next">
-                <a href="#">Older Posts &rarr;</a>
-            </li>
-        </ul>
     </div>
-</div>
 </div>
 
 <hr>

@@ -44,7 +44,7 @@ router.post('/signup',
     [
         check('firstName', 'Please enter the first name.').not().isEmpty(),
         check('email', 'Please enter email').isEmail(),
-        check('password', 'Please enter the password.').isLength({ min: 6 }) // have to make room for errors in hbs
+        check('password', 'Please enter the password.').isLength({ min: 6 }) 
     ],
     async (req, res) => {
 
@@ -211,7 +211,7 @@ router.get('/user', auth, async (req, res) => {
         console.log(error.message);
         res.render('login', { title: 'Login', layout, msg: "Error while Login...", blogs });
     };
-})
+});
 
 // -----------------User PROFILE Page - GET------------------- //
 router.get('/user/profile', auth, async (req, res) => {
