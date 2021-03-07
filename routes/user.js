@@ -200,15 +200,17 @@ router.get('/admin/:id',authRole, async(req, res) => {
 try {
     // const decoded = jwt.verify(req.cookies['token'], config.secret);
     const decoded = jwt.verify(req.params.id, config.secret);
-
+    const allUsers = await User.find();
+    // console.log(allUsers);
+    const allBlogs = await blog.find().populate('userId');
+    console.log(allBlogs[1]);
     const user = await User.findById({_id:decoded});
-    res.render('admin', { title: "Admin", layout, user });
+    res.render('admin', { title: "Admin", layout, user, allUsers, allBlogs });
 
 } catch (error) {
     if (error){
         console.log(error.message);
-        return res.status(401).send(`<center><h1 style = "color: Red;">You are NOT AUTHORISED to view this page!</h1></center>`)
-        throw error;
+        return res.status(401).send(`<center><h1 style = "color: Red;">You are NOT AUTHORISED to view this page!</h1></center>`);
     }
 }
 });

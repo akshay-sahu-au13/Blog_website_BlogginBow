@@ -76,7 +76,7 @@
                     <div class="card mt-3">
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                                <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                {{!-- <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                         stroke-linecap="round" stroke-linejoin="round"
                                         class="feather feather-globe mr-2 icon-inline">
@@ -129,7 +129,7 @@
                                         <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z">
                                         </path>
                                     </svg>Facebook</h6>
-                                <span class="text-secondary">bootdey</span>
+                                <span class="text-secondary">bootdey</span> --}}
                             </li>
                         </ul>
                     </div>
@@ -139,21 +139,28 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <h6 class="mb-0">Full Name</h6>
-                                </div>
-                                <div class="col-sm-9 text-secondary">
-                                    {{user.firstName}} {{user.lastName}}
+                                    <h6 class="mb-0">Logged In Users</h6>
                                 </div>
                             </div>
                             <hr>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">Email</h6>
-                                </div>
-                                <div class="col-sm-9 text-secondary">
-                                    {{user.email}}
-                                </div>
-                            </div>
+                            <ul>
+                                {{#each allUsers}}
+                                <li>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">{{this.firstName}}</h6>
+                                        </div>
+                                        <div class="col-md-4">
+                                            {{this.email}}
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <button id="{{this.email}}" onclick="deactivate('{{this.email}}')"
+                                                style="background-color: green;">{{this.status}}</button>
+                                        </div>
+                                    </div>
+                                </li>
+                                {{/each}}
+                            </ul>
                             <hr>
                             <div class="row">
                                 <div class="col-sm-3">
@@ -257,3 +264,26 @@
         </div>
     </div>
 </div>
+<p id="blogcount" onclick="countBlogs()">Test this</p>
+{{!--
+<p id="demo" onclick="myFunction()">Click me to change my text color.</p>
+
+<p>A function is triggered when the p element is clicked. The function sets the color of the p element to red.</p>
+
+<p onclick="countBlogs()">Heyy, I will trun blue</p> --}}
+{{!--
+<script>
+    function myFunction() {
+        document.getElementById("demo").style.color = "red";
+    }
+</script> --}}
+
+{{!--
+<script>
+    function countBlogs() {
+        console.log("Bluedddd")
+        document.getElementById("blogcount").innerHTML = "Count is ___";
+
+    }
+</script> --}}
+<script src="/functions_js/funcfile.js"></script>
