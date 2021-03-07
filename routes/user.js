@@ -196,8 +196,21 @@ router.post('/login',
 
 // -----------------ADMIN Profile Page - GET------------------- //
 
-router.get('/admin', (req, res) => {
-    res.render('admin', { title: "Admin", layout })
+router.get('/admin/:id',authRole, async(req, res) => {
+try {
+    // const decoded = jwt.verify(req.cookies['token'], config.secret);
+    const decoded = jwt.verify(req.params.id, config.secret);
+
+    const user = await User.findById({_id:decoded});
+    res.render('admin', { title: "Admin", layout, user });
+
+} catch (error) {
+    if (error){
+        console.log(error.message);
+        return res.status(401).send(`<center><h1 style = "color: Red;">You are NOT AUTHORISED to view this page!</h1></center>`)
+        throw error;
+    }
+}
 });
 
 // -----------------User PROFILE/USER Page - GET------------------- //

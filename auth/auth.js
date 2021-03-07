@@ -3,6 +3,7 @@ const config = require('../config/config');
 const path = require('path')
 const layout = path.join('layouts', "index");
 const User = require('../models/user');
+
 // const { userRoutes, loggedUsers } = require('../routes/user');
 const auth = function (req, res, next) {
 
@@ -37,7 +38,10 @@ const authRole = async function (req, res, next) {
             // console.log(user)
             if (user.role === "admin") {
                 data = { msg: "Logged in as admin" }
-                return res.redirect('/auth/admin');
+                res.cookie('admin', user._id, {maxAge: 600000});
+                const token = await jwt.sign(user.id, config.secret);
+                res.cookie('token', token, { maxAge: 600000 });
+                return res.redirect(`/auth/admin/${token}`);
             }
                 return res.status(401).send(`<center><h1 style = "color: Red;">You are NOT AUTHORISED to view this page!</h1></center>`)
 
