@@ -87,16 +87,35 @@
                         Problems look mighty small from 150 miles up
                     </h3>
                 </a>
-                <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on September 24, 2014</p>
+                <p class="post-meta">Posted by <a href="#">Anonymous</a> on September 24, 2021</p>
             </div>
             <hr>
+            {{!-- Dynamic Blogs --}}
+            <div class="post-preview">
+                <ul>
+                    {{#each blogs}}
+
+
+                    <a href="post.html">
+                        <h2 class="post-title">
+                            {{this.title}}
+                        </h2>
+                        <h3 class="post-subtitle">
+                            {{this.description}}
+                        </h3>
+                    </a>
+                    <p class="post-meta">Posted by <a href="#">{{this.userId.firstName}</a> {{this.date}}</p>
+            </div>
+            <hr>
+            </ul>
+            {{!-- Dynamic blog section ends --}}
             <div class="post-preview">
                 <a href="post.html">
                     <h2 class="post-title">
                         I believe every human has a finite number of heartbeats. I don't intend to waste any of mine.
                     </h2>
                 </a>
-                <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on September 18, 2014</p>
+                <p class="post-meta">Posted by <a href="#">Anonymous</a> on September 18, 2021</p>
             </div>
             <hr>
             <div class="post-preview">

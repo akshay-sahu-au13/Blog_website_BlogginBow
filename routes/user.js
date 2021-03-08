@@ -381,7 +381,7 @@ router.post('/admin/status-change/:id', async(req, res)=> {
         console.log("Token from status-change",req.cookies);
         res.redirect(`/auth/admin/`+req.cookies['token']);
     } catch (error) {
-        console.log(error.message);
+        console.log("Error from Status-change:",error.message);
         throw error;
     }
 });

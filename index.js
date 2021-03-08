@@ -8,6 +8,8 @@ const layout = path.join('layouts', "index");
 const cookie = require( 'cookie-parser' );
 const PORT = process.env.PORT || 5100;
 const hbs = require('hbs');
+const User = require('./models/user');
+const Blog = require('./models/blog');
 const partialPath = path.join(__dirname,'../views/partials');
 const multer = require('multer');
 const methodOverride  = require('method-override');
@@ -52,8 +54,10 @@ let upload = multer({
     storage: Storage,
 }).single('dp');
 
-app.get('/', (req, res)=> {
-    console.log("HOME-loggedUsers",loggedUsers)
+app.get('/', async(req, res)=> {
+    const blogs = await Blog.find().populate('userId').sort({createdAt:-1});
+    console.log(blogs);
+    console.log("HOME-loggedUsers",loggedUsers);
     res.render('home', {title: " BlogginBow home", layout});
 });
 
