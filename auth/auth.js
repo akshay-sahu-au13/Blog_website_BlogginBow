@@ -36,15 +36,17 @@ const authRole = async function (req, res, next) {
         if (req.body.admin === 'on') {
 
             const user = await User.findOne({ email: req.body.email });
-            // console.log(user)
+            console.log(user)
             isMatch = bcrypt.compareSync(req.body.password, user.password);
 
             if (user && user.role === "admin" && isMatch) {
                 
-                data = { msg: "Logged in as admin" }
-                res.cookie('admin', user._id, {maxAge: 600000});
+                // data = { msg: "Logged in as admin" }
+                res.cookie('admin', user.id, {maxAge: 600000});
+                console.log("FROM AUTH ROLE:: COOKIE: ",req.cookies)
                 const token = await jwt.sign(user.id, config.secret);
                 res.cookie('token', token, { maxAge: 600000 });
+                console.log("FROM AUTH ROLE:: COOKIE: ",req.cookies)
                 return res.redirect(`/auth/admin/${token}`);
             }
                 return res.status(401).send(`<center><h1 style = "color: Red;">You are NOT AUTHORISED to view this page!</h1></center>`)
@@ -55,7 +57,7 @@ const authRole = async function (req, res, next) {
             next()
         }
     } catch (error) {
-        if (error) console.log(error)
+        if (error) console.log("Error from auth: ",error)
     }
 }
 

@@ -400,3 +400,16 @@ input[type="checkbox"]:not(:checked) + label, input[type="checkbox"]:checked + l
 }
 
 
+/* ----------------Admin page settings--------------- */
+
+.btn.status {
+  min-width: 160px;
+  padding: -15px -20px;
+  margin-bottom: 10px;
+
+}
+
+.center {
+  text-align: center;
+}
+

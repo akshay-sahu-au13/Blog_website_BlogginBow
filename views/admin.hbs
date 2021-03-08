@@ -138,25 +138,45 @@
                     <div class="card mb-3">
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">Logged In Users</h6>
+                                <div class="col-sm-3 center">
+                                    <h4 class="mb-0">Users</h4>
+                                </div>
+                                <div class="col-md-4 center">
+                                    <h4 class="mb-0">Email</h4>
+                                </div>
+                                <div class="col-sm-3 center">
+                                    <h4 class="mb-0">Status</h4>
                                 </div>
                             </div>
                             <hr>
                             <ul>
                                 {{#each allUsers}}
-                                <li>
+                                <li class="userlist">
                                     <div class="row">
-                                        <div class="col-sm-3">
-                                            <h6 class="mb-0">{{this.firstName}}</h6>
+                                        <div class="col-sm-3 center">
+                                            <h4 class="mb-0">{{this.firstName}}</h4>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-4 center">
                                             {{this.email}}
                                         </div>
-                                        <div class="col-sm-3">
+                                        {{!-- <div class="col-sm-3 center">
                                             <button id="{{this.email}}" onclick="deactivate('{{this.email}}')"
-                                                style="background-color: green;">{{this.status}}</button>
-                                        </div>
+                                                style="background-color: lime; color: white;"
+                                                class="btn status">{{this.status}}</button>
+                                        </div> --}}
+                                        <form action="./status-change/{{this._id}}" method="POST">
+                                            <div class="col-sm-3 center">
+                                                {{#if this.isActive}}
+                                                <button id="{{this.email}}" onclick="deactivate('{{this.email}}')"
+                                                    style="background-color: lime; color: white;"
+                                                    class="btn status">Active</button>
+                                                {{else}}
+                                                <button id="{{this.email}}" onclick="deactivate('{{this.email}}')"
+                                                    style="background-color: red; color: white;"
+                                                    class="btn status">Deactivated</button>
+                                                {{/if}}
+                                            </div>
+                                        </form>
                                     </div>
                                 </li>
                                 {{/each}}

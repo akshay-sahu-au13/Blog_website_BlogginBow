@@ -19,10 +19,10 @@ function deactivate(email) {
     
     document.getElementById(email).innerHTML = document.getElementById(email).innerHTML=='Active' ?'De-Activated':"Active"
 
-    if (document.getElementById(email).style.backgroundColor =='green'){
-        document.getElementById(email).style.backgroundColor = "red"
+    if (document.getElementById(email).style.backgroundColor =='lime'){
+        document.getElementById(email).style.backgroundColor = "red";
     }  else {
-        document.getElementById(email).style.backgroundColor = 'green'
+        document.getElementById(email).style.backgroundColor = 'lime';
     }
     // setTimeout(()=> {
     //     document.getElementById(email).style.backgroundColor =  "red" ?'green': "red"

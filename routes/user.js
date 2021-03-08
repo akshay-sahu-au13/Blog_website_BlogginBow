@@ -165,8 +165,8 @@ router.post('/login',
             if (!user) {
                 return res.render('login', { title: "Login", layout, data:{msg: "User not found! Please Signup first"} });
             }
-            if (user.status == 'Inactive'){
-                res.render('login', {title: "Deactivated user", layout, error: "You account is temporarily suspended!"}); 
+            if (!user.isActive){
+                return res.render('login', {title: "Deactivated user", layout, error: "You account is temporarily suspended!"}); 
             }
             const isMatch = bcrypt.compareSync(req.body.password, user.password);
 
@@ -198,7 +198,7 @@ router.post('/login',
 
 // -----------------ADMIN Profile Page - GET------------------- //
 
-router.get('/admin/:id',authRole, async(req, res) => {
+router.get('/admin/:id', async(req, res) => {
 try {
     // const decoded = jwt.verify(req.cookies['token'], config.secret);
     const decoded = jwt.verify(req.params.id, config.secret);
@@ -362,6 +362,28 @@ router.post('/user/profile/pwdreset',auth, async(req, res)=> {
         
     }
 })
+
+router.post('/admin/status-change/:id', async(req, res)=> {
+    try {
+        let user = await User.findById({_id:req.params.id});
+        console.log(user);
+        if (user.isActive){
+
+            await User.findByIdAndUpdate({_id:req.params.id}, {
+                "$set": {isActive: false}});
+        } else {
+            await User.findByIdAndUpdate({_id:req.params.id}, {
+                "$set": {isActive: true}});
+        }
+         user = await User.findById({_id:req.params.id});
+        console.log(user)
+        console.log("Token from status-change",req.cookies);
+        res.redirect(`/auth/admin/`+req.cookies['token']);
+    } catch (error) {
+        console.log(error.message);
+        throw error;
+    }
+});
 
 userRoutes = router;
 
