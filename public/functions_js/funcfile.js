@@ -24,8 +24,5 @@ function deactivate(email) {
     }  else {
         document.getElementById(email).style.backgroundColor = 'lime';
     }
-    // setTimeout(()=> {
-    //     document.getElementById(email).style.backgroundColor =  "red" ?'green': "red"
-    // }, 2000)
 
 }
