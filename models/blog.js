@@ -31,10 +31,6 @@ const blogSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    markdown: {
-        type: String,
-        default: "Not converted to MD"
-    },
     slug: {
         type: String,
         required: true,

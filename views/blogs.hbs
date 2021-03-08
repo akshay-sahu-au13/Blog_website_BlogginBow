@@ -13,19 +13,125 @@
     </ul>
 
 </div> --}}
-<div class="container">
 
-    <div class="post-preview">
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                Menu <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand" href="/">BlogginBow</a>
+        </div>
 
-        <h2 class="post-title">
-            {{blog.title}}
-        </h2>
-        <h3 class=>
-            {{{blog.description}}}
-        </h3>
-
-        <p class="post-meta">Posted by <a href="/auth/user/profile/{{user._id}}"></a>{{user.firstName}}</a>
-            on {{blog.date}}</p>
-        <p>{{{blog.sanitizedHtml}}}</p>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="/">Home</a>
+                </li>
+                <li>
+                    <a href="#">About</a>
+                </li>
+                <li>
+                    <a href="#read-blogs">Read Blogs</a>
+                </li>
+                <li>
+                    <a href="#">Contact</a>
+                </li>
+                <li>
+                    <a href="/auth/login">Login</a>
+                </li>
+                <li>
+                    <a href="/auth/signup">Signup</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
     </div>
-</div>
+    <!-- /.container -->
+</nav>
+
+<!-- Page Header -->
+
+<!-- Set your background image for this header on the line below. -->
+<header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
+
+    <div class="container-fluid blog-show">
+
+        <div class="post">
+            <p class="blogpost-meta">Posted by <a href="/auth/user/profile/{{user._id}}"></a>{{user.firstName}}</a>
+                on {{blog.date}}</p>
+            <h2 class="blogpost-title">
+                {{blog.title}}
+            </h2>
+            <p class='blogpost-desc'>
+                {{{blog.description}}}
+            </p>
+
+            {{{blog.sanitizedHtml}}}
+
+        </div>
+    </div>
+</header>
+{{!--
+<div class="blogpost">
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top profile_nav" style="color:hotpink">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="/auth/user">BlogginBow</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/auth/user">Home</a>
+                    </li>
+                    <li>
+                        <a href="/auth/user">Back to Home</a>
+                    </li>
+                    <li>
+                        <a href="/auth/profile/userblogs">Your Blogs</a>
+                    </li>
+                    <li>
+                        <a href="/auth/profile/writeblog">Write a Blog</a>
+                    </li>
+                    <li>
+                        <a href="/auth/logout">Logout</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+    <header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
+
+        <div class="container-fluid blog-show">
+
+            <div class="post">
+                <p class="blogpost-meta">Posted by <a href="/auth/user/profile/{{user._id}}"></a>{{user.firstName}}</a>
+                    on {{blog.date}}</p>
+                <h2 class="blogpost-title">
+                    {{blog.title}}
+                </h2>
+                <p class='blogpost-desc'>
+                    {{{blog.description}}}
+                </p>
+
+                {{{blog.sanitizedHtml}}}
+
+            </div>
+        </div>
+    </header>
+
+</div> --}}
