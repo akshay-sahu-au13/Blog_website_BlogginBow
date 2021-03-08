@@ -165,7 +165,9 @@ router.post('/login',
             if (!user) {
                 return res.render('login', { title: "Login", layout, data:{msg: "User not found! Please Signup first"} });
             }
-
+            if (user.status == 'Inactive'){
+                res.render('login', {title: "Deactivated user", layout, error: "You account is temporarily suspended!"}); 
+            }
             const isMatch = bcrypt.compareSync(req.body.password, user.password);
 
             if (!isMatch) {
@@ -203,7 +205,7 @@ try {
     const allUsers = await User.find();
     // console.log(allUsers);
     const allBlogs = await blog.find().populate('userId');
-    console.log(allBlogs[1]);
+    // console.log(allBlogs[1]);
     const user = await User.findById({_id:decoded});
     res.render('admin', { title: "Admin", layout, user, allUsers, allBlogs });
 
