@@ -3,6 +3,7 @@ const config = require('../config/config');
 const path = require('path')
 const layout = path.join('layouts', "index");
 const User = require('../models/user');
+const bcrypt = require('bcryptjs');
 
 // const { userRoutes, loggedUsers } = require('../routes/user');
 const auth = function (req, res, next) {
@@ -36,7 +37,10 @@ const authRole = async function (req, res, next) {
 
             const user = await User.findOne({ email: req.body.email });
             // console.log(user)
-            if (user.role === "admin") {
+            isMatch = bcrypt.compareSync(req.body.password, user.password);
+
+            if (user && user.role === "admin" && isMatch) {
+                
                 data = { msg: "Logged in as admin" }
                 res.cookie('admin', user._id, {maxAge: 600000});
                 const token = await jwt.sign(user.id, config.secret);
