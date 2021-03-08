@@ -58,7 +58,7 @@ app.get('/', async(req, res)=> {
     const blogs = await Blog.find().populate('userId').sort({createdAt:-1});
     console.log(blogs);
     console.log("HOME-loggedUsers",loggedUsers);
-    res.render('home', {title: " BlogginBow home", layout});
+    res.render('home', {title: " BlogginBow home", layout, blogs});
 });
 
 

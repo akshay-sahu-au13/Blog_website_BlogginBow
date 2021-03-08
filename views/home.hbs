@@ -91,22 +91,26 @@
             </div>
             <hr>
             {{!-- Dynamic Blogs --}}
-            <div class="post-preview">
-                <ul>
-                    {{#each blogs}}
 
+            <ul>
 
-                    <a href="post.html">
-                        <h2 class="post-title">
-                            {{this.title}}
-                        </h2>
-                        <h3 class="post-subtitle">
-                            {{this.description}}
-                        </h3>
-                    </a>
-                    <p class="post-meta">Posted by <a href="#">{{this.userId.firstName}</a> {{this.date}}</p>
-            </div>
-            <hr>
+                {{#each blogs}}
+
+                <li>
+                    <div class="post-preview">
+                        <a href="post.html">
+                            <h2 class="post-title">
+                                {{this.title}}
+                            </h2>
+                            <h3 class="post-subtitle">
+                                {{{this.description}}}
+                            </h3>
+                        </a>
+                        <p class="post-meta">Posted by <a href="#">{{this.userId.firstName}}</a> {{this.date}}</p>
+                    </div>
+                    <hr>
+                </li>
+                {{/each}}
             </ul>
             {{!-- Dynamic blog section ends --}}
             <div class="post-preview">
