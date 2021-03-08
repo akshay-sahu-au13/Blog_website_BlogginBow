@@ -363,6 +363,7 @@ router.post('/user/profile/pwdreset',auth, async(req, res)=> {
     }
 })
 
+//------------------------- ACTIVATE / DEACTIVATE USER -------------------------- //
 router.post('/admin/status-change/:id', async(req, res)=> {
     try {
         let user = await User.findById({_id:req.params.id});

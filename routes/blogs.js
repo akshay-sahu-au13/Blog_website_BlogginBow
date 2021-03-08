@@ -17,7 +17,7 @@ router.get('/auth/profile/userblogs', auth, async (req, res) => {
             layout,
             blogs
         };
-        console.log(data)
+        // console.log(data)
         res.render('blogs', {
             title: `${user.firstName}'s blogpost`,
             layout,
