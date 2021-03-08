@@ -98,7 +98,7 @@
 
                 <li>
                     <div class="post-preview">
-                        <a href="/readblogs/{{this._id}}">
+                        <a href="/readblogs/{{this._id}}" target="_blank">
                             <h2 class="post-title">
                                 {{this.title}}
                             </h2>
@@ -106,7 +106,8 @@
                                 {{{this.description}}}
                             </h3>
                         </a>
-                        <p class="post-meta">Posted by <a href="#">{{this.userId.firstName}}</a> {{this.date}}</p>
+                        <p class="post-meta">Posted by <a href="#">{{this.userId.firstName}}</a> {{this.date}}
+                            "{{this.genre}}"</p>
                     </div>
                     <hr>
                 </li>
