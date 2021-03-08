@@ -74,6 +74,12 @@ router.get('/auth/user/userblogs/:id',auth, async(req, res)=> {
     res.render('blogs', {title:`${blog.title}`, layout, blog, user});
 })
 
+router.get('/readblogs/:id', async(req, res)=> {
+    const blog = await Blog.findById({_id:req.params.id});
+    // console.log(blog);
+    res.render('blogs', {layout, title:`${blog.title}`, blog})
+})
+
 router.get('/auth/profile/editblog/:id', auth, (req, res) => {
     res.render()
 })
