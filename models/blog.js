@@ -1,9 +1,20 @@
 const mongoose = require('mongoose');
 const marked = require('marked');
-const slugify = require('slugify')
-const createDomPurify = require('dompurify')
-const { JSDOM } = require('jsdom')
-const dompurify = createDomPurify(new JSDOM().window)
+const slugify = require('slugify');
+const createDomPurify = require('dompurify');
+const { JSDOM } = require('jsdom');
+const dompurify = createDomPurify(new JSDOM().window);
+
+const commentSchema = mongoose.Schema({
+  name: {
+    type:String,
+    required :true
+  },
+  comment:{
+    type: String,
+    required: true
+  }
+}, {timestamps: true});
 
 const blogSchema = mongoose.Schema({
     title: {
@@ -39,7 +50,8 @@ const blogSchema = mongoose.Schema({
       sanitizedHtml: {
         type: String,
         required: true
-      }
+      },
+      comments: [commentSchema]
 });
 
 blogSchema.pre('validate', function(next) {

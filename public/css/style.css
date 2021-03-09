@@ -558,11 +558,11 @@ input[type="checkbox"]:not(:checked) + label, input[type="checkbox"]:checked + l
 
 #name, #comments {
   font-family: Montserrat, Arial, Helvetica, sans-serif;
-  background-color: rgba(156, 156, 151, 0.664);
+  background-color: rgba(184, 184, 169, 0.342);
   max-width: 90%;
   padding: 10px 10px;
   border: none;
-  margin-bottom: 10px;
+  margin-bottom: 17px;
   border-radius: 5px;
 }
 
