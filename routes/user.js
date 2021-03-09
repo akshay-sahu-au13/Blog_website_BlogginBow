@@ -206,7 +206,8 @@ try {
     // console.log(allUsers);
     const allBlogs = await blog.find().populate('userId');
     // console.log(allBlogs[1]);
-    const user = await User.findById({_id:decoded});
+    const user = await Profile.findOne({userId:decoded}).populate('userId');
+    console.log("Admins's Info: ", user)
     res.render('admin', { title: "Admin", layout, user, allUsers, allBlogs });
 
 } catch (error) {
@@ -350,6 +351,7 @@ router.post('/user/profile/pwdreset',auth, async(req, res)=> {
                 res.render('login', {layout, title: `${user.firstName} Re-login`, data: {msg:`Password changed successfully, please re-login with the NEW PASSWORD...`}})
 
             } else{
+                console.log('New passwords did not match!')
                 return res.render('pwdreset', {title:"Reset password", layout, data: {msg:"Re-enter the password, didn't match!"}});
             }
         }

@@ -482,7 +482,7 @@ input[type="checkbox"]:not(:checked) + label, input[type="checkbox"]:checked + l
   color: rgb(187, 144, 4);
 }
 
-select {
+#search {
   max-width: 200px;
   margin-left: -5px;
   margin-top: 4px;
