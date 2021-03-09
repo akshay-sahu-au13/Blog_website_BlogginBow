@@ -505,14 +505,11 @@ select {
 }
 
 .cat-msg {
-  
-  
-  background-image: linear-gradient(rgba(255, 240, 191, 0.781),rgba(255, 240, 191, 0.781));
+  text-decoration: underline;
+  text-decoration-style: double;
   width: max-content;
-  padding: -10px 10px;
   position: absolute;
   top: 10px;
   left: 350px;
-  text-decoration: dotted;
   font-style: italic;
 }
