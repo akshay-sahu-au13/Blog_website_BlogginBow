@@ -31,27 +31,24 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        {{#if logged}}
                         <a href="/auth/user">Home</a>
-                        {{else}}
-                        <a href="/">Home</a>
-                        {{/if}}
                     </li>
                     <li>
-                        <a href="/about-us">About</a>
+                        <a href="/auth/user/profile">Profile</a>
                     </li>
                     <li>
-                        <a href="/#read-blogs">Read Blogs</a>
+                        <a href="/#read-blogs">Read All Blogs</a>
                     </li>
                     <li>
                         <a
-                            href="mailto:akki5233@@gmail.com?cc=blogginbowsupport@example.com&subject=Query Regarding BlogginBow">Contact</a>
+                            href="mailto:akki5233@@gmail.com?cc=blogginbowsupport@example.com&subject=Query Regarding BlogginBow">Contact
+                            Blogginbow</a>
                     </li>
                     <li>
-                        <a href="/auth/login">Login</a>
+                        <a href="/auth/profile/writeblog">Write a Blog</a>
                     </li>
                     <li>
-                        <a href="/auth/signup">Signup</a>
+                        <a href="/auth/logout">Logout</a>
                     </li>
                 </ul>
             </div>
@@ -65,36 +62,43 @@
     <!-- Set your background image for this header on the line below. -->
     <header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
         <br><br><br>
-        <center><span style="color:springgreen;">{{msg}}</span></center>
-        <div class="container-fluid blog-show">
+        <ul>
+            {{#each blogs}}
+            <li>
+                <div class="edit-btn">
+                    <a href="/auth/profile/editblog/:id" class="btn btn-primary">Edit</a>
+                </div>
+                <div class="edit-delete">
+                    <a href="/auth/profile/deleteblog/:id" class="btn btn-danger">Delete</a>
+                </div>
 
-            <div class="post">
-                <p class="blogpost-genre">Category: <a href="/auth/user/profile/{{user._id}}"></a>"{{blog.genre}}"</a>
-                </p>
-                <p class="blogpost-meta">Posted by <a href="/auth/user/profile/{{user._id}}"></a>{{user.firstName}}</a>
-                    on {{blog.date}}</p>
-                <h2 class="blogpost-title">
-                    {{blog.title}}
-                </h2>
-                <p class='blogpost-desc'>
-                    {{{blog.description}}}
-                </p>
+                <div class="container-fluid blog-show">
+                    <div class="post">
+                        <p class="blogpost-genre">Category: "{{this.genre}}"
 
-                {{{blog.sanitizedHtml}}}
+                        </p>
 
-            </div>
-        </div>
-        {{!-- <div class="container-fluid">
-            <div class="comments">
-                <form action="" method="POST">
-                    <input type="text" name="name" placeholder="Enter your name">
-                    <textarea name="comment" id="comment" cols="30" rows="10"
-                        placeholder="Your comment goes here"></textarea>
-                </form>
-            </div>
-        </div> --}}
-
+                        <p class="blogpost-meta">Posted by <a
+                                href="/auth/user/profile/{{user._id}}"></a>{{user.firstName}}
+                            </a>
+                            on {{this.date}}</p>
+                        <a href="/auth/user/userblogs/{{this.id}}" target="_blank">
+                            <h2 class="blogpost-title" style="color: lightcyan;">
+                                {{this.title}}
+                            </h2>
+                            <p class='blogpost-desc'>
+                                {{{this.description}}}
+                            </p>
+                        </a>
+                        {{!-- {{{this.sanitizedHtml}}} --}}
+                    </div>
+                </div>
+            </li>
+            {{/each}}
+        </ul>
+        <br><br><br>
     </header>
+    {{!--
     <hr>
 
     <ul class="comments">
@@ -109,9 +113,9 @@
             </div>
         </li><br>
         {{/each}}
-    </ul>
+    </ul> --}}
 
-    <div class="container-fluid" style="margin-top: 40px;">
+    {{!-- <div class="container-fluid" style="margin-top: 40px;">
 
         <button type="button" id="comment" class="btn-comment">
             Add comments
@@ -144,4 +148,4 @@
         document.querySelector('.bg-modal').style.display = 'none';
     });
 
-</script>
+</script> --}}

@@ -427,13 +427,14 @@ input[type="checkbox"]:not(:checked) + label, input[type="checkbox"]:checked + l
 }
 
 .post {
-  margin: 100px 50px;
+  margin: 20px 50px;
   border-radius: 5px;
   background-image: linear-gradient(rgba(41, 39, 36, 0.61), rgba(46, 40, 28, 0.808));
   color: whitesmoke;
   box-shadow: 2px 2px 3px 3px rgba(98, 128, 139, 0.884);
   padding: 10px 10px 30px 10px;
 }
+
 
 .blogpost-title {
   padding: 15px;
