@@ -513,3 +513,68 @@ input[type="checkbox"]:not(:checked) + label, input[type="checkbox"]:checked + l
   left: 350px;
   font-style: italic;
 }
+
+/* -------------------------Comment Modal---------------------- */
+
+
+.bg-modal {
+  height: 100%;
+  width: 100%;
+  background-color: rgb(0, 0, 0, 0.65);
+  position: absolute;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  align-items: flex-end;
+  padding-bottom: 20px;
+  display: none;
+  position:fixed;
+  top:auto;
+  right:auto;
+  left:auto;
+  bottom:0;
+}
+
+.modal-contents {
+  width: 50%;
+  height: fit-content;
+  background-color: rgb(255, 255, 255);
+  border-radius: 8px;
+  text-align: left;
+  padding: 20px;
+  position: relative;
+}
+
+.btn-comment{
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  background-color: lightseagreen;
+  font-family: Montserrat, Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  color: white;
+  margin: 15px 0;
+}
+
+#name, #comments {
+  font-family: Montserrat, Arial, Helvetica, sans-serif;
+  background-color: rgba(156, 156, 151, 0.664);
+  max-width: 90%;
+  padding: 10px 10px;
+  border: none;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+#comments {
+  min-height: 100px;
+}
+
+.close {
+  position: absolute;
+  top: 5px;
+  right: 20px;   
+  font-size: 40px;
+  transform: rotate(45deg);
+  cursor: pointer;
+}

@@ -77,63 +77,46 @@
 
         </div>
     </div>
+    {{!-- <div class="container-fluid">
+        <div class="comments">
+            <form action="" method="POST">
+                <input type="text" name="name" placeholder="Enter your name">
+                <textarea name="comment" id="comment" cols="30" rows="10"
+                    placeholder="Your comment goes here"></textarea>
+            </form>
+        </div>
+    </div> --}}
+
 </header>
-{{!--
-<div class="blogpost">
-    <nav class="navbar navbar-default navbar-custom navbar-fixed-top profile_nav" style="color:hotpink">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    Menu <i class="fa fa-bars"></i>
-                </button>
-                <a class="navbar-brand" href="/auth/user">BlogginBow</a>
-            </div>
+<div class="container-fluid" style="margin-top: 40px;">
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="/auth/user">Home</a>
-                    </li>
-                    <li>
-                        <a href="/auth/user">Back to Home</a>
-                    </li>
-                    <li>
-                        <a href="/auth/profile/userblogs">Your Blogs</a>
-                    </li>
-                    <li>
-                        <a href="/auth/profile/writeblog">Write a Blog</a>
-                    </li>
-                    <li>
-                        <a href="/auth/logout">Logout</a>
-                    </li>
-                </ul>
+    <button type="button" id="comment" class="btn-comment">
+        Add comments
+    </button>
+
+    <div class="bg-modal">
+        <div class="modal-contents">
+            <div class="close">
+                +
             </div>
-            <!-- /.navbar-collapse -->
+            <form action="" method="POST">
+                <input type="text" name="name" id="name" placeholder="Your name"><br>
+                <textarea name="comment" id="comments" cols="30" rows="5"
+                    placeholder="Write your comment"></textarea><br>
+                <button type="submit" class="btn-comment">Post Comment</button>
+
+            </form>
         </div>
-        <!-- /.container -->
-    </nav>
-    <header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
+    </div>
+</div>
 
-        <div class="container-fluid blog-show">
 
-            <div class="post">
-                <p class="blogpost-meta">Posted by <a href="/auth/user/profile/{{user._id}}"></a>{{user.firstName}}</a>
-                    on {{blog.date}}</p>
-                <h2 class="blogpost-title">
-                    {{blog.title}}
-                </h2>
-                <p class='blogpost-desc'>
-                    {{{blog.description}}}
-                </p>
+<script>
+    document.getElementById('comment').addEventListener('click', function () {
+        document.querySelector(".bg-modal").style.display = 'flex'
+    });
 
-                {{{blog.sanitizedHtml}}}
-
-            </div>
-        </div>
-    </header>
-
-</div> --}}
+    document.querySelector('.close').addEventListener('click', function () {
+        document.querySelector('.bg-modal').style.display = 'none';
+    });
+</script>
