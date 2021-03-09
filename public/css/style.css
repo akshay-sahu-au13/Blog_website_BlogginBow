@@ -503,3 +503,12 @@ select {
   border-radius: 4px;
   box-shadow: 2px 2px 1px 1px rgba(78, 48, 3, 0.781);
 }
+
+.cat-msg {
+  width: max-content;
+  position: absolute;
+  top: 10px;
+  left: 350px;
+  text-decoration: underline;
+  font-style: italic;
+}

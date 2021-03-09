@@ -76,7 +76,7 @@ app.post('/', async(req, res)=> {
         // const blogs = await Blog.find().populate('userId').sort({ _id: -1 });
         const filteredblogs = await Blog.find({genre:req.body.search}).populate('userId').sort({ _id: -1 });
         console.log(filteredblogs);
-        res.render('home', {layout, title:"Bloggingbow Home", blogs:filteredblogs, msg: `Blogs in "${req.body.search}" category...`});
+        res.render('home', {layout, title:"Bloggingbow Home", blogs:filteredblogs, msg: `  Blogs in "${req.body.search}" category...`});
     } catch (error) {
         if (error) {
             console.log(error.message);
