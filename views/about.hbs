@@ -36,7 +36,7 @@
                     <a href="/">Home</a>
                 </li>
                 <li>
-                    <a href="/about-us">About</a>
+                    <a href="#">About</a>
                 </li>
                 <li>
                     <a href="#read-blogs">Read Blogs</a>
@@ -73,108 +73,29 @@
             </div>
         </div>
     </div>
-</header>
-<div class="searchbar">
-    <form action="/" method="POST">
-        <label for="search" class="search">Categories</label><br>
-        <select name="search" id="search">
-            <option value="Nofilter" selected="selected" disabled>No filter applied</option>
-            <option value="Entertainment">Entertainment</option>
-            <option value="Technology">Technology</option>
-            <option value="Education">Education</option>
-            <option value="Nature">Nature</option>
-            <option value="Politics">Politics</option>
-            <option value="Travel">Travel</option>
-            <option value="General">General</option>
-        </select>
-        <button type="submit" class="search-submit">Search</button>
-    </form>
-    <div class="cat-msg">
-        <p><span class="catergory_msg">{{msg}}</span></p>
-    </div>
-</div><br><br>
-<!-- Main Content -->
-<div class="container" id="read-blogs">
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            <div class="post-preview">
-                <a href="post.html">
-                    <h2 class="post-title">
-                        Man must explore, and this is exploration at its greatest
-                    </h2>
-                    <h3 class="post-subtitle">
-                        Problems look mighty small from 150 miles up
-                    </h3>
-                </a>
-                <p class="post-meta">Posted by <a href="#">Anonymous</a> on September 24, 2021</p>
-            </div>
-            <hr>
-            {{!-- Dynamic Blogs --}}
-
-            <ul>
-
-                {{#each blogs}}
-
-                <li>
-                    <div class="post-preview">
-                        <a href="/readblogs/{{this._id}}" target="_blank">
-                            <h2 class="post-title">
-                                {{this.title}}
-                            </h2>
-                            <h3 class="post-subtitle">
-                                {{{this.description}}}
-                            </h3>
-                        </a>
-                        <p class="post-meta">Posted by <a href="#">{{this.userId.firstName}}</a> {{this.date}}
-                            "{{this.genre}}"</p>
-                    </div>
-                    <hr>
-                </li>
-                {{/each}}
-            </ul>
-            {{!-- Dynamic blog section ends --}}
-            <div class="post-preview">
-                <a href="post.html">
-                    <h2 class="post-title">
-                        I believe every human has a finite number of heartbeats. I don't intend to waste any of mine.
-                    </h2>
-                </a>
-                <p class="post-meta">Posted by <a href="#">Anonymous</a> on September 18, 2021</p>
-            </div>
-            <hr>
-            <div class="post-preview">
-                <a href="post.html">
-                    <h2 class="post-title">
-                        Science has not yet mastered prophecy
-                    </h2>
-                    <h3 class="post-subtitle">
-                        We predict too much for the next year and yet far too little for the next ten.
-                    </h3>
-                </a>
-                <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on August 24, 2014</p>
-            </div>
-            <hr>
-            <div class="post-preview">
-                <a href="post.html">
-                    <h2 class="post-title">
-                        Failure is not an option
-                    </h2>
-                    <h3 class="post-subtitle">
-                        Many say exploration is part of our destiny, but it’s actually our duty to future generations.
-                    </h3>
-                </a>
-                <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on July 8, 2014</p>
-            </div>
-            <hr>
-            <!-- Pager -->
-            <ul class="pager">
-                <li class="next">
-                    <a href="#">Older Posts &rarr;</a>
-                </li>
-            </ul>
+    <div class="container-fluid">
+        <div class="about">
+            <p>Blogginbow is an online blogging platform for creative and aspiring writers. We provide the authors a
+                clean
+                UI and Blog writing section to ease up their work while they are pen down their thhoughts, experience,
+                knowledge, adventure and case studies. A user can also maintain a profile which will conatin their
+                personal
+                info as well as many features like Creating a Blogpost, Editing a blogpost, Uploading pictures, Reading
+                blogs, Password reset, Commenting on other blogs.</p>
+            <p>We at blogginbow review all the blogs posted by diffrent authors and only allow an author to keep
+                publishing
+                if we find their content free from Plagiarism, and without any offensive or provocative content. If our
+                team
+                finds anyone violating the policies then their account gets suspended with an immidiate effect until we
+                hear
+                back from them with an assurance that all the compliances will be followed diligently.</p>
+            <p>If you want to showcase your work to the world, come join with Blogginbow and explore the new world of
+                Blogging with us.</p>
+            <p>Thank You</p>
+            <strong>Contact us at:</strong> <span>support@blogginbow.com</span>
         </div>
     </div>
-</div>
+</header>
 
 <hr>
 <!-- Footer -->
