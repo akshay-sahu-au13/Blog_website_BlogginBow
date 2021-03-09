@@ -98,6 +98,7 @@ router.post('/addcomment/:id', async(req, res)=> {
         });
 
         await blog.save();
+        
         res.redirect(`/readblogs/${req.params.id}`);
      } catch (error) {
          console.log(error.message);
