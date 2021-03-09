@@ -431,7 +431,7 @@ input[type="checkbox"]:not(:checked) + label, input[type="checkbox"]:checked + l
   border-radius: 5px;
   background-image: linear-gradient(rgba(41, 39, 36, 0.61), rgba(46, 40, 28, 0.808));
   color: whitesmoke;
-  box-shadow: 2px 2px 5px 5px rgba(98, 128, 139, 0.884);
+  box-shadow: 2px 2px 3px 3px rgba(98, 128, 139, 0.884);
   padding: 10px 10px 30px 10px;
 }
 
@@ -446,14 +446,14 @@ input[type="checkbox"]:not(:checked) + label, input[type="checkbox"]:checked + l
   color: rgb(235, 178, 33);
   margin: -5px 0 30px 0;
 }
-
+/* 
 .blogpost-content{
   padding-bottom: 20px;
   color: blue;
   border-radius: 5px;
   background-color: wheat;
   background-image: linear-gradient(rgba(253, 237, 213, 0.815), rgba(247, 226, 185, 0.808));
-}
+} */
 
 .blogpost-meta {
   padding-top: 10px;
@@ -550,10 +550,18 @@ input[type="checkbox"]:not(:checked) + label, input[type="checkbox"]:checked + l
   padding: 5px 10px;
   border-radius: 4px;
   background-color: lightseagreen;
+  /* box-shadow: 1px 1px 2px 2px rgba(112, 240, 233, 0.788); */
   font-family: Montserrat, Arial, Helvetica, sans-serif;
   font-weight: 500;
   color: white;
-  margin: 15px 0;
+  margin: 15px 0 30px 0;
+  transition: 0.4s;
+}
+
+.btn-comment:hover {
+  background-color:rgb(1, 119, 113) ;
+  box-shadow: 2px 2px 3px 3px rgba(112, 240, 233, 0.788);
+  transform: scale(1.1);
 }
 
 #name, #comments {
@@ -577,4 +585,36 @@ input[type="checkbox"]:not(:checked) + label, input[type="checkbox"]:checked + l
   font-size: 40px;
   transform: rotate(45deg);
   cursor: pointer;
+}
+
+/* --------------------- COMMENT SECTION -------------------- */
+
+.comment-section {
+  height: max-content;
+  width: 100%;
+  padding: 10px 20px;
+  border: 2px solid rgba(53, 53, 23, 0.322);
+  border-radius: 8px;
+  background-color: rgba(41, 41, 20, 0.562);
+  box-shadow: 1px 2px 3px 2px rgba(66, 62, 21, 0.562)
+}
+
+.comment-body {
+  padding: 0 15px;
+  color: rgb(68, 211, 255);
+  font-family: cursive;
+}
+
+.commenter {
+  color: gold;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  text-decoration:underline ;
+}
+
+.comments li{
+  margin: 0 auto;
+}
+
+.blog-body{
+  background-color: rgb(175, 173, 173);
 }

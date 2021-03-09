@@ -86,6 +86,24 @@ router.get('/auth/profile/editblog/:id', auth, (req, res) => {
 
 router.post('/auth/profile/editblog/:id', auth, (req, res) => {
 
-})
+});
+
+router.post('/addcomment/:id', async(req, res)=> {
+     try {
+        const blog = await Blog.findById({_id:req.params.id});
+        console.log(blog);
+        blog.comments.push({
+            name:req.body.name,
+            comment:req.body.comment
+        });
+
+        await blog.save();
+        res.redirect(`/readblogs/${req.params.id}`);
+     } catch (error) {
+         console.log(error.message);
+         throw error;
+     };
+
+});
 
 module.exports = router;

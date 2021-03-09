@@ -13,99 +13,117 @@
     </ul>
 
 </div> --}}
+<div class="blog-body">
 
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header page-scroll">
-            <button type="button" class="navbar-toggle" data-toggle="collapse"
-                data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                Menu <i class="fa fa-bars"></i>
-            </button>
-            <a class="navbar-brand" href="/">BlogginBow</a>
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="/">Home</a>
-                </li>
-                <li>
-                    <a href="#">About</a>
-                </li>
-                <li>
-                    <a href="#read-blogs">Read Blogs</a>
-                </li>
-                <li>
-                    <a href="#">Contact</a>
-                </li>
-                <li>
-                    <a href="/auth/login">Login</a>
-                </li>
-                <li>
-                    <a href="/auth/signup">Signup</a>
-                </li>
-            </ul>
-        </div>
-        <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container -->
-</nav>
-
-<!-- Page Header -->
-
-<!-- Set your background image for this header on the line below. -->
-<header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
-
-    <div class="container-fluid blog-show">
-
-        <div class="post">
-            <p class="blogpost-genre">Category: <a href="/auth/user/profile/{{user._id}}"></a>"{{blog.genre}}"</a>
-            </p>
-            <p class="blogpost-meta">Posted by <a href="/auth/user/profile/{{user._id}}"></a>{{user.firstName}}</a>
-                on {{blog.date}}</p>
-            <h2 class="blogpost-title">
-                {{blog.title}}
-            </h2>
-            <p class='blogpost-desc'>
-                {{{blog.description}}}
-            </p>
-
-            {{{blog.sanitizedHtml}}}
-
-        </div>
-    </div>
-    {{!-- <div class="container-fluid">
-        <div class="comments">
-            <form action="" method="POST">
-                <input type="text" name="name" placeholder="Enter your name">
-                <textarea name="comment" id="comment" cols="30" rows="10"
-                    placeholder="Your comment goes here"></textarea>
-            </form>
-        </div>
-    </div> --}}
-
-</header>
-<div class="container-fluid" style="margin-top: 40px;">
-
-    <button type="button" id="comment" class="btn-comment">
-        Add comments
-    </button>
-
-    <div class="bg-modal">
-        <div class="modal-contents">
-            <div class="close">
-                +
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="/">BlogginBow</a>
             </div>
-            <form action="/addcomment/{{blog._id}}" method="POST">
-                <input type="text" name="name" id="name" placeholder="Your name"><br>
-                <textarea name="comment" id="comments" cols="30" rows="5"
-                    placeholder="Write your comment"></textarea><br>
-                <button type="submit" class="btn-comment">Post Comment</button>
 
-            </form>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    <li>
+                        <a href="#">About</a>
+                    </li>
+                    <li>
+                        <a href="#read-blogs">Read Blogs</a>
+                    </li>
+                    <li>
+                        <a href="#">Contact</a>
+                    </li>
+                    <li>
+                        <a href="/auth/login">Login</a>
+                    </li>
+                    <li>
+                        <a href="/auth/signup">Signup</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Header -->
+
+    <!-- Set your background image for this header on the line below. -->
+    <header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
+
+        <div class="container-fluid blog-show">
+
+            <div class="post">
+                <p class="blogpost-genre">Category: <a href="/auth/user/profile/{{user._id}}"></a>"{{blog.genre}}"</a>
+                </p>
+                <p class="blogpost-meta">Posted by <a href="/auth/user/profile/{{user._id}}"></a>{{user.firstName}}</a>
+                    on {{blog.date}}</p>
+                <h2 class="blogpost-title">
+                    {{blog.title}}
+                </h2>
+                <p class='blogpost-desc'>
+                    {{{blog.description}}}
+                </p>
+
+                {{{blog.sanitizedHtml}}}
+
+            </div>
+        </div>
+        {{!-- <div class="container-fluid">
+            <div class="comments">
+                <form action="" method="POST">
+                    <input type="text" name="name" placeholder="Enter your name">
+                    <textarea name="comment" id="comment" cols="30" rows="10"
+                        placeholder="Your comment goes here"></textarea>
+                </form>
+            </div>
+        </div> --}}
+
+    </header>
+    <hr>
+
+    <ul class="comments">
+        {{#each blog.comments}}
+        <li>
+            <div class="container-fluid">
+                <div class="comment-section">
+                    <h4 class="commenter">Commented by: {{this.name}}</h4>
+                    <p class="comment-body">{{this.comment}}</p>
+
+                </div>
+            </div>
+        </li><br>
+        {{/each}}
+    </ul>
+
+    <div class="container-fluid" style="margin-top: 40px;">
+
+        <button type="button" id="comment" class="btn-comment">
+            Add comments
+        </button>
+
+        <div class="bg-modal">
+            <div class="modal-contents">
+                <div class="close">
+                    +
+                </div>
+                <form action="/addcomment/{{blog._id}}" method="POST">
+                    <input type="text" name="name" id="name" placeholder="Your name"><br>
+                    <textarea name="comment" id="comments" cols="30" rows="5"
+                        placeholder="Write your comment"></textarea><br>
+                    <button type="submit" class="btn-comment">Post Comment</button>
+
+                </form>
+            </div>
         </div>
     </div>
 </div>
@@ -119,4 +137,5 @@
     document.querySelector('.close').addEventListener('click', function () {
         document.querySelector('.bg-modal').style.display = 'none';
     });
+
 </script>
