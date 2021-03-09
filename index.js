@@ -7,8 +7,8 @@ const MongoInit = require('./config/mongodb');
 const layout = path.join('layouts', "index");
 const cookie = require('cookie-parser');
 const PORT = process.env.PORT || 5100;
-const hbs = require('hbs');
-const User = require('./models/user');
+// const hbs = require('hbs');
+// const User = require('./models/user');
 const Blog = require('./models/blog');
 const partialPath = path.join(__dirname, '../views/partials');
 const multer = require('multer');
@@ -38,9 +38,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'views'));
 
-// hbs.registerPartial(partials,partialPath);
 
-// Setting storage engine
+// ---------- Setting storage engine ----------- //
 const Storage = multer.diskStorage({
     destination: "./public/uploads/",
     filename: (req, file, cb) => {
@@ -48,11 +47,13 @@ const Storage = multer.diskStorage({
     }
 });
 
-// Init file upload
+// ---------Init file upload------- //
 
 let upload = multer({
     storage: Storage,
 }).single('dp');
+
+// ---------------------- HOME GET Route -------------------  //
 
 app.get('/', async (req, res) => {
 
@@ -70,6 +71,7 @@ app.get('/', async (req, res) => {
     };
 });
 
+// ---------------------- HOME POST Route -------------------  //
 app.post('/', async(req, res)=> {
 
     try {
