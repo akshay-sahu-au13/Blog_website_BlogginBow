@@ -528,7 +528,7 @@ input[type="checkbox"]:not(:checked) + label, input[type="checkbox"]:checked + l
   font-style: italic;
 }
 
-/* -------------------------Comment Modal---------------------- */
+/* -------------------------Comment and deleteblog Modal---------------------- */
 
 
 .bg-modal {

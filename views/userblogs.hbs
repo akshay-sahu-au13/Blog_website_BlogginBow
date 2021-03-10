@@ -71,8 +71,11 @@
                     <div class="edit-btn">
                         <a href="./editblog/{{this._id}}" class="btn btn-primary">Edit</a>
                     </div>
-                    <div id="deleteblog" class="delete-btn btn btn-danger">
-                        Delete
+                    <div class="deleteblog delete-btn ">
+                        <form action="./deleteblog/{{this._id}}" method="POST"><button type="submit"
+                                class="btn btn-danger">Delete</button></form>
+                        {{!-- <a href="./deleteblog/{{this._id}}" class="btn btn-danger">Delete</a> --}}
+
                     </div>
                     <div class="post">
                         <p class="blogpost-genre">Category: "{{this.genre}}"
@@ -116,8 +119,9 @@
     </header>
 
 
+    {{!--
     <script>
-        document.getElementById('deleteblog').addEventListener('click', function () {
+        document.querySelector('.deleteblog').addEventListener('click', function () {
             document.querySelector(".modal-bg-blog").style.display = 'flex'
         });
 
@@ -132,4 +136,4 @@
             document.querySelector('.modal-contents-blog').style.display = 'none';
         });
 
-    </script>
+    </script> --}}

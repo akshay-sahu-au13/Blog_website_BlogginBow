@@ -113,7 +113,9 @@ router.post('/auth/profile/editblog/:id', auth, async(req, res) => {
 router.post('/auth/profile/deleteblog/:id', auth, async(req, res) => {
     try {
         await Blog.findByIdAndDelete({_id:req.params.id});
-        res.status(204).send();
+        let blogs = await Blog.find({ userId: req.user }).populate(req.user).sort({ _id: -1 });
+        // res.status(204).send();
+        res.render('userblogs', {title:"Deleted", layout, blogs});
     } catch (error) {
         if (error) console.log(error.message);
         res.render('userblogs', {title:"Error while deleting", layout, msg:"Error while deleting, please try again..."})
