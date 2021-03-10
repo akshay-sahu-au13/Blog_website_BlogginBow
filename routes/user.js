@@ -388,6 +388,8 @@ router.post('/admin/status-change/:id', async(req, res)=> {
     }
 });
 
+// router.get()
+
 userRoutes = router;
 
 module.exports = { userRoutes, loggedUsers };

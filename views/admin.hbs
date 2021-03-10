@@ -57,8 +57,8 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex flex-column align-items-center text-center">
-                                {{#if info.image}}
-                                <img src="/uploads/{{info.image}}" alt="Profile pic" class="rounded-circle" width="150">
+                                {{#if user.image}}
+                                <img src="/uploads/{{user.image}}" alt="Profile pic" class="rounded-circle" width="150">
                                 {{else}}
                                 <img src="/img/upload-dp-icon.png" alt="Profile pic" class="rounded-circle" width="150">
                                 {{/if}}
@@ -187,11 +187,7 @@
                                         <div class="col-md-4 center">
                                             {{this.email}}
                                         </div>
-                                        {{!-- <div class="col-sm-3 center">
-                                            <button id="{{this.email}}" onclick="deactivate('{{this.email}}')"
-                                                style="background-color: lime; color: white;"
-                                                class="btn status">{{this.status}}</button>
-                                        </div> --}}
+
                                         <form action="./status-change/{{this._id}}" method="POST">
                                             <div class="col-sm-3 center">
                                                 {{#if this.isActive}}
