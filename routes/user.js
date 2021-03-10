@@ -347,8 +347,8 @@ router.post('/user/profile/pwdreset',auth, async(req, res)=> {
                     '$set': {
                         password: bcrypt.hashSync(req.body.newpwd, 10)
                     }
-                })
-                res.render('login', {layout, title: `${user.firstName} Re-login`, data: {msg:`Password changed successfully, please re-login with the NEW PASSWORD...`}})
+                });
+                res.render('login', {layout, title: `${user.firstName} Re-login`, data: {msg:`Password changed successfully, please re-login with the NEW PASSWORD...`}});
 
             } else{
                 console.log('New passwords did not match!')
