@@ -208,7 +208,7 @@ try {
     // console.log(allBlogs[1]);
     const user = await Profile.findOne({userId:decoded}).populate('userId');
     console.log("Admins's Info: ", user)
-    res.render('admin', { title: "Admin", layout, user, allUsers, allBlogs });
+    res.render('admin', { title: "Admin", layout, user, allUsers, allBlogs, id:req.params.id , loggedUsers});
 
 } catch (error) {
     if (error){
