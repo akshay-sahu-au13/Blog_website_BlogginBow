@@ -65,14 +65,15 @@
         <ul>
             {{#each blogs}}
             <li>
-                <div class="edit-btn">
-                    <a href="/auth/profile/editblog/:id" class="btn btn-primary">Edit</a>
-                </div>
-                <div class="edit-delete">
-                    <a href="/auth/profile/deleteblog/:id" class="btn btn-danger">Delete</a>
-                </div>
+
 
                 <div class="container-fluid blog-show">
+                    <div class="edit-btn">
+                        <a href="./editblog/{{this._id}}" class="btn btn-primary">Edit</a>
+                    </div>
+                    <div id="deleteblog" class="delete-btn btn btn-danger">
+                        Delete
+                    </div>
                     <div class="post">
                         <p class="blogpost-genre">Category: "{{this.genre}}"
 
@@ -94,58 +95,41 @@
                     </div>
                 </div>
             </li>
+            <div class="modal-bg-blog">
+                <div class="modal-contents-blog">
+                    <div class="close closeit">
+                        +
+                    </div>
+                    <form action="/auth/profile/deleteblog/{{this._id}}" method="POST">
+                        <p>Are you sure to delete this blog?</p><br>
+                        <button type="submit" class="yes btn-comment closeit">Yes</button>
+                        <button type="button" class="btn-comment closeit">No</button>
+                        {{!-- <a href="#" class="closeit btn-comment">No</a> --}}
+
+                    </form>
+                </div>
+            </div>
             {{/each}}
         </ul>
+
         <br><br><br>
     </header>
-    {{!--
-    <hr>
-
-    <ul class="comments">
-        {{#each blog.comments}}
-        <li>
-            <div class="container-fluid">
-                <div class="comment-section">
-                    <h4 class="commenter">Commented by: {{this.name}}</h4>
-                    <p class="comment-body">{{this.comment}}</p>
-
-                </div>
-            </div>
-        </li><br>
-        {{/each}}
-    </ul> --}}
-
-    {{!-- <div class="container-fluid" style="margin-top: 40px;">
-
-        <button type="button" id="comment" class="btn-comment">
-            Add comments
-        </button>
-
-        <div class="bg-modal">
-            <div class="modal-contents">
-                <div class="close">
-                    +
-                </div>
-                <form action="/addcomment/{{blog._id}}" method="POST">
-                    <input type="text" name="name" id="name" placeholder="Your name"><br>
-                    <textarea name="comment" id="comments" cols="30" rows="5"
-                        placeholder="Write your comment"></textarea><br>
-                    <button type="submit" class="btn-comment">Post Comment</button>
-
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
 
 
-<script>
-    document.getElementById('comment').addEventListener('click', function () {
-        document.querySelector(".bg-modal").style.display = 'flex'
-    });
+    <script>
+        document.getElementById('deleteblog').addEventListener('click', function () {
+            document.querySelector(".modal-bg-blog").style.display = 'flex'
+        });
 
-    document.querySelector('.close').addEventListener('click', function () {
-        document.querySelector('.bg-modal').style.display = 'none';
-    });
+        document.querySelector('.yes').addEventListener('click', function () {
+            document.querySelector(".blogpost-title").innerHTML = 'DELETED';
+            document.querySelector(".blogpost-genre").innerHTML = 'DELETED';
+            document.querySelector(".blogpost-description").innerHTML = 'DELETED';
+        });
 
-</script> --}}
+
+        document.querySelector('.closeit').addEventListener('click', function () {
+            document.querySelector('.modal-contents-blog').style.display = 'none';
+        });
+
+    </script>

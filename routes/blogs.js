@@ -92,19 +92,31 @@ router.get('/auth/profile/editblog/:id', auth, async (req, res) => {
 
 router.post('/auth/profile/editblog/:id', auth, async(req, res) => {
     try {
-        await Blog.findByIdAndUpdate({_id:req.params.id}, {
+       const eblog =  await Blog.findByIdAndUpdate({_id:req.params.id}, {
             "$set": {
                 title:req.body.title,
                 description: req.body.description,
-                content:req.body.body,
+                body:req.body.body,
                 genre:req.body.genre
             }
         });
+        await eblog.save();
     const blog = await Blog.findById({_id:req.params.id})
-        res.render('blogs', {layout, title:"Edited Successfully", blog, msg:"Blog Edited successfully"})
+    await blog.save()
+        res.render('blogs', {layout, title:"Edited Successfully", blog:blog, msg:"Blog Edited successfully"})
     } catch (error) {
         if (error) console.log(error.message);
         res.render('editblog', {title:"Error while saving", layout, msg:"Error while saving, please try again..."})
+    }
+});
+
+router.post('/auth/profile/deleteblog/:id', auth, async(req, res) => {
+    try {
+        await Blog.findByIdAndDelete({_id:req.params.id});
+        res.status(204).send();
+    } catch (error) {
+        if (error) console.log(error.message);
+        res.render('userblogs', {title:"Error while deleting", layout, msg:"Error while deleting, please try again..."})
     }
 });
 

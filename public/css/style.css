@@ -423,7 +423,20 @@ input[type="checkbox"]:not(:checked) + label, input[type="checkbox"]:checked + l
 
 .blog-show {
   /* margin: 80px auto; */
+  position: relative;
   text-align: center;
+}
+
+.edit-btn {
+  position: absolute;
+  top: 120px;
+  left: 75px;
+}
+
+.delete-btn {
+ position: absolute;
+ top: 200px;
+ left: 75px;
 }
 
 .post {
@@ -546,6 +559,34 @@ input[type="checkbox"]:not(:checked) + label, input[type="checkbox"]:checked + l
   position: relative;
 }
 
+.modal-contents-blog {
+  width: 40%;
+  height: fit-content;
+  background-color: rgb(255, 255, 255);
+  border-radius: 8px;
+  text-align: center;
+  padding: 20px;
+  position: relative;
+}
+
+.modal-bg-blog {
+  height: 100%;
+  width: 100%;
+  background-color: rgb(0, 0, 0, 0.65);
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-items: flex-end;
+  padding-bottom: 150px;
+  display: none;
+  position:fixed;
+  top:0;
+  /* right:auto; */
+  left:0;
+  /* bottom:0; */
+}
+
 .btn-comment{
   border: none;
   padding: 5px 10px;
@@ -586,6 +627,10 @@ input[type="checkbox"]:not(:checked) + label, input[type="checkbox"]:checked + l
   font-size: 40px;
   transform: rotate(45deg);
   cursor: pointer;
+}
+
+.closeit {
+ margin-left: 30px;
 }
 
 /* --------------------- COMMENT SECTION -------------------- */
