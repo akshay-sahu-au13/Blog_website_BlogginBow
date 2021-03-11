@@ -232,12 +232,49 @@
                         </div>
                     </div>
                     <div class="row gutters-sm">
-                        <div class="col-sm-6 mb-3">
-                            <div class="card h-100">
+                        <div class="col-md-6 mb-3">
+                            <div class="container" id="read-blogs" style="margin-left: -150px; ">
+                                <div class="row">
+                                    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+                                        <ul>
+                                            {{#each blogs}}
+                                            <li>
+                                                <div class="post-preview">
+
+                                                    <a href="/auth/user/userblogs/{{this._id}}" target="_blank">
+                                                        <h2 class="post-title" style="color:seashell">
+                                                            {{this.title}}
+                                                        </h2>
+                                                        <h3 class="post-subtitle" style="color:seashell">
+                                                            {{{this.description}}}
+                                                        </h3>
+                                                    </a>
+                                                    <p class="post-meta" style="color: turquoise;"><a
+                                                            href="/auth/user/profile/{{user._id}}"
+                                                            style="color: rgb(64, 133, 224);">Posted by you</a>
+                                                        on {{this.date}}</p>
+                                                </div>
+                                            </li>
+                                            {{/each}}
+                                        </ul>
+
+                                        {{!-- ---------------------------------------------------------- --}}
+
+                                        <!-- Pager -->
+                                        <ul class="pager">
+                                            <li class="next">
+                                                <a href="/auth/user/#read-blogs">Older Posts &rarr;</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            {{!-- <div class="card h-100">
                                 <div class="card-body">
                                     <h6 class="d-flex align-items-center mb-3"><i
                                             class="material-icons text-info mr-2">Blogs projects</i></h6>
-                                    <small>Web Design</small>
+                                    <small>{{}}</small>
                                     <div class="progress mb-3" style="height: 5px">
                                         <div class="progress-bar bg-primary" role="progressbar" style="width: 80%"
                                             aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
@@ -297,17 +334,17 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
 
                         {{!-- Modal for social media links --}}
 
-
-
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 
 <script>

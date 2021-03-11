@@ -255,7 +255,7 @@ router.get('/user/profile', auth, async (req, res) => {
         const user = await User.findById({ _id: req.user });
         const socialmedia = await socialMedia.findOne({userId:req.user});
         const blogs = await Blog.find({userId:req.user}).sort({_id:-1});
-        res.render('profile1', { title: `${user.firstName}'s profile`, layout, info, user, sm:socialmedia });
+        res.render('profile1', { title: `${user.firstName}'s profile`, layout, info, user, sm:socialmedia, blogs });
 
     } catch (error) {
         console.log("Error from user/profile",error.message);
