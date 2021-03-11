@@ -14,7 +14,8 @@ const loggedUsers = {};
 const logs = [];
 const layout = path.join('layouts', 'index');
 const multer = require('multer');
-const blog = require('../models/blog');
+const Blog = require('../models/blog');
+const socialMedia = require('../models/social-media');
 
 
 // -- setting up Storage for mukter -- //
@@ -235,7 +236,7 @@ try {
 // -----------------User PROFILE/USER Page - GET------------------- //
 router.get('/user', auth, async (req, res) => {
     try {
-        const blogs = await blog.find({userId:req.user}).sort({_id:-1});
+        const blogs = await Blog.find({userId:req.user}).sort({_id:-1});
         const user = await User.findById({ _id: req.user });
         res.render('user', { title: `${user.firstName}'s profile`, layout, user, blogs });
 
@@ -252,11 +253,12 @@ router.get('/user/profile', auth, async (req, res) => {
     try {
         const info = await Profile.findOne({ userId: req.user });
         const user = await User.findById({ _id: req.user });
-        res.render('profile1', { title: `${user.firstName}'s profile`, layout, info, user });
+        const socialmedia = await socialMedia.findOne({userId:req.user});
+        res.render('profile1', { title: `${user.firstName}'s profile`, layout, info, user, sm:socialmedia });
 
     } catch (error) {
-        console.log(error.message);
-        res.render('login', { title: 'Login', layout, error: "Error while Login..." });
+        console.log("Error from user/profile",error.message);
+        res.render('login', { title: 'Login', layout, error: "Error Accessing profile..." });
     };
 });
 
@@ -414,6 +416,26 @@ router.post('/admin/status-change/:id', async(req, res)=> {
     } catch (error) {
         console.log("Error from Status-change:",error.message);
         throw error;
+    }
+});
+
+router.post('/profile/social-media',auth, async(req, res)=> {
+    try {
+        const socialmedia = new socialMedia({
+            website: req.body.website,
+            github:req.body.github,
+            twitter:req.body.twitter,
+            instagram:req.body.instagram,
+            facebook:req.body.facebook,
+            userId: req.user
+        });
+
+        await socialmedia.save();
+        res.redirect('/auth/user/profile');
+
+    } catch (error) {
+        console.log("Error from update user: ",error.message);
+        res.redirect('/auth/user/profile')
     }
 });
 

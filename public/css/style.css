@@ -588,6 +588,7 @@ input[type="checkbox"]:not(:checked) + label, input[type="checkbox"]:checked + l
   right:auto;
   left:auto;
   bottom:0px;
+  z-index: 10;
 }
 
 .modal-contents {
