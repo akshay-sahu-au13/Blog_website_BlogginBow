@@ -53,7 +53,8 @@ router.post('/auth/profile/writeblog', auth, async (req, res) => {
         const data = {
             title: `Blog saved`,
             layout,
-            blog
+            blog,
+            msg: "Blog Posted Successfully"
         };
 
         res.render('writeblog', data);
@@ -61,7 +62,13 @@ router.post('/auth/profile/writeblog', auth, async (req, res) => {
     } catch (error) {
         if (error) {
             console.log("Error: ", error.message);
-            throw error;
+            const data = {
+                title: `Blog rejected`,
+                layout,
+                blog,
+                error: "Error while saving..."
+            };
+            res.render('writeblog', data);
         }
     }
 
@@ -114,8 +121,7 @@ router.post('/auth/profile/deleteblog/:id', auth, async(req, res) => {
     try {
         await Blog.findByIdAndDelete({_id:req.params.id});
         let blogs = await Blog.find({ userId: req.user }).populate(req.user).sort({ _id: -1 });
-        // res.status(204).send();
-        res.render('userblogs', {title:"Deleted", layout, blogs});
+        res.redirect('/auth/profile/userblogs');
     } catch (error) {
         if (error) console.log(error.message);
         res.render('userblogs', {title:"Error while deleting", layout, msg:"Error while deleting, please try again..."})

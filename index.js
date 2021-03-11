@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 5100;
 // const hbs = require('hbs');
 // const User = require('./models/user');
 const Blog = require('./models/blog');
-const partialPath = path.join(__dirname, '../views/partials');
+// const partialPath = path.join(__dirname, '../views/partials');
 const multer = require('multer');
 const methodOverride = require('method-override');
 

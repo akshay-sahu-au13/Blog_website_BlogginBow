@@ -11,6 +11,7 @@ const jwt = require('jsonwebtoken');
 const { userInfo } = require('os');
 const { request } = require('http');
 const loggedUsers = {};
+const logs = [];
 const layout = path.join('layouts', 'index');
 const multer = require('multer');
 const blog = require('../models/blog');
@@ -185,6 +186,7 @@ router.post('/login',
             // console.log(`Session: ${req.session} :::: Req.session: ${req.session.token}`)
 
             loggedUsers[user._id] = true;
+            logs.push({id:user._id, name:user.firstName, email:req.body.email})
             console.log("Logged users (LOGIN_POST): ", loggedUsers);
 
             res.redirect('/auth/user');
@@ -208,7 +210,19 @@ try {
     // console.log(allBlogs[1]);
     const user = await Profile.findOne({userId:decoded}).populate('userId');
     console.log("Admins's Info: ", user)
-    res.render('admin', { title: "Admin", layout, user, allUsers, allBlogs, id:req.params.id , loggedUsers});
+    // const loggedusers = Object.entries(loggedUsers);
+    // console.log(loggedusers);
+    const lUsers = allUsers.map(item => {
+        if (item._id in loggedUsers && loggedUsers[item._id]==true) {
+            return {name:item.firstName, email:item.email}
+        }
+    }).filter(item => {
+        if (item) {
+            return item
+        }
+    });
+    console.log(lUsers);
+    res.render('admin', { title: "Admin", layout, user, allUsers, allBlogs, id:req.params.id , lUsers});
 
 } catch (error) {
     if (error){

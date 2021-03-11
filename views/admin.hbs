@@ -108,9 +108,30 @@
                                 <hr>
                                 <div class="row logged-users">
                                     <div class="col-lg">
-                                        <center>
+
+                                        <center style="text-decoration: underline;">
                                             <h4 class="mb-0">LOGGED IN USERS</h4>
                                         </center>
+
+                                    </div>
+                                    <div class="row-lUsers">
+
+                                        <ul>
+                                            <li class="list-label">
+                                                <div class="Uname">Name</div>
+                                                <div class="Uname">Email</div>
+                                                <div class="Uname">Status</div>
+                                            </li>
+                                            {{#each lUsers}}
+                                            <li class="ulist">
+                                                {{#if this}}
+                                                <div class="Uname">{{this.name}}</div>
+                                                <div class="Uname">{{this.email}}</div>
+                                                <div class="Ustatus">🟢</div>
+                                                {{/if}}
+                                            </li>
+                                            {{/each}}
+                                        </ul>
                                     </div>
 
                                 </div>
@@ -250,7 +271,8 @@
                             <div class="card h-100">
                                 <div class="card-body">
                                     <h6 class="d-flex align-items-center mb-3"><i
-                                            class="material-icons text-info mr-2">Blogs projects</i></h6>
+                                            class="material-icons text-info mr-2">Blogs
+                                            projects</i></h6>
                                     <small>Web Design</small>
                                     <div class="progress mb-3" style="height: 5px">
                                         <div class="progress-bar bg-primary" role="progressbar" style="width: 80%"
