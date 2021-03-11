@@ -235,7 +235,7 @@ try {
 // -----------------User PROFILE/USER Page - GET------------------- //
 router.get('/user', auth, async (req, res) => {
     try {
-        const blogs = await blog.find({userId:req.user});
+        const blogs = await blog.find({userId:req.user}).sort({_id:-1});
         const user = await User.findById({ _id: req.user });
         res.render('user', { title: `${user.firstName}'s profile`, layout, user, blogs });
 

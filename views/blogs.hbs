@@ -48,10 +48,19 @@
                             href="mailto:akki5233@@gmail.com?cc=blogginbowsupport@example.com&subject=Query Regarding BlogginBow">Contact</a>
                     </li>
                     <li>
+                        {{#if logged}}
+                        <a href="/auth/user/profile">Profile</a>
+                        {{else}}
                         <a href="/auth/login">Login</a>
+                        {{/if}}
                     </li>
                     <li>
+                        {{#if logged}}
+                        <a href="/auth/logout">Logout</a>
+                        {{else}}
                         <a href="/auth/signup">Signup</a>
+                        {{/if}}
+
                     </li>
                 </ul>
             </div>
@@ -84,19 +93,11 @@
 
             </div>
         </div>
-        {{!-- <div class="container-fluid">
-            <div class="comments">
-                <form action="" method="POST">
-                    <input type="text" name="name" placeholder="Enter your name">
-                    <textarea name="comment" id="comment" cols="30" rows="10"
-                        placeholder="Your comment goes here"></textarea>
-                </form>
-            </div>
-        </div> --}}
+
 
     </header>
     <hr>
-
+    {{!-- COMMENT SECTION - MODAL --}}
     <ul class="comments">
         {{#each blog.comments}}
         <li>
