@@ -38,6 +38,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'views'));
 
+// For flash message
+app.all('/express-flash', (req, res )=> {
+  req.flash('success', 'This is a flash message using the express-flash module.');
+  res.redirect(301, '/');
+})
 
 // ---------- Setting storage engine ----------- //
 const Storage = multer.diskStorage({

@@ -4,7 +4,8 @@ const path = require('path');
 const Blog = require('../models/blog');
 const { auth, authRole } = require('../auth/auth');
 const User = require('../models/user');
-const layout = path.join('layouts', 'index')
+const layout = path.join('layouts', 'index');
+const layout2 = path.join('layouts', 'index2');
 
 
 router.get('/auth/profile/userblogs', auth, async (req, res) => {
@@ -78,14 +79,18 @@ router.get('/auth/user/userblogs/:id', auth, async (req, res) => {
     const blog = await Blog.findById({ _id: req.params.id }).populate('userId');
     console.log(blog);
     // const user = await User.findById({ _id: req.user });
-    res.render('blogs', { title: `${blog.title}`, layout, blog, logged:true });
+    res.render('blogs', { title: `${blog.title}`, layout:layout2, blog, logged:true });
 })
 
 router.get('/readblogs/:id', async (req, res) => {
     const blog = await Blog.findById({ _id: req.params.id }).populate('userId');
     console.log(blog);
-    if (req.cookies.token) logged = true;
-    res.render('blogs', { layout, title: `${blog.title}`, blog, logged })
+    let logged = false;
+    if (req.cookies.token){
+        logged = true;
+
+    }
+    res.render('blogs', { layout:layout2, title: `${blog.title}`, blog, logged })
 })
 
 router.get('/auth/profile/editblog/:id', auth, async (req, res) => {
@@ -130,8 +135,9 @@ router.post('/auth/profile/deleteblog/:id', auth, async(req, res) => {
 });
 
 router.post('/addcomment/:id', async (req, res) => {
+    const blog = await Blog.findById({ _id: req.params.id });
     try {
-        const blog = await Blog.findById({ _id: req.params.id });
+        
         console.log(blog);
         blog.comments.push({
             name: req.body.name,
@@ -140,10 +146,11 @@ router.post('/addcomment/:id', async (req, res) => {
 
         await blog.save();
 
-        res.redirect(`/readblogs/${req.params.id}`);
+        res.redirect(`/readblogs/${req.params.id}/#comment`);
     } catch (error) {
         console.log(error.message);
-        throw error;
+        res.redirect(`/readblogs/${req.params.id}/#comment`)
+        // throw error;
     };
 
 });
