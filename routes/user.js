@@ -207,7 +207,7 @@ try {
     const decoded = jwt.verify(req.params.id, config.secret);
     const allUsers = await User.find();
     // console.log(allUsers);
-    const allBlogs = await blog.find().populate('userId');
+    const allBlogs = await Blog.find().populate('userId');
     // console.log(allBlogs[1]);
     const user = await Profile.findOne({userId:decoded}).populate('userId');
     console.log("Admins's Info: ", user)
