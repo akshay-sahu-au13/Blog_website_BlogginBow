@@ -75,15 +75,15 @@ router.post('/auth/profile/writeblog', auth, async (req, res) => {
 });
 
 router.get('/auth/user/userblogs/:id', auth, async (req, res) => {
-    const blog = await Blog.findById({ _id: req.params.id });
+    const blog = await Blog.findById({ _id: req.params.id }).populate('userId');
     console.log(blog);
-    const user = await User.findById({ _id: req.user });
-    res.render('blogs', { title: `${blog.title}`, layout, blog, user, logged:true });
+    // const user = await User.findById({ _id: req.user });
+    res.render('blogs', { title: `${blog.title}`, layout, blog, logged:true });
 })
 
 router.get('/readblogs/:id', async (req, res) => {
-    const blog = await Blog.findById({ _id: req.params.id });
-    // console.log(blog);
+    const blog = await Blog.findById({ _id: req.params.id }).populate('userId');
+    console.log(blog);
     res.render('blogs', { layout, title: `${blog.title}`, blog })
 })
 

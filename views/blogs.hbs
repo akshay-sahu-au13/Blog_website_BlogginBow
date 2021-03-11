@@ -78,9 +78,10 @@
         <div class="container-fluid blog-show">
 
             <div class="post">
-                <p class="blogpost-genre">Category: <a href="/auth/user/profile/{{user._id}}"></a>"{{blog.genre}}"</a>
+                <p class="blogpost-genre">Category: "{{blog.genre}}"
                 </p>
-                <p class="blogpost-meta">Posted by <a href="/auth/user/profile/{{user._id}}"></a>{{user.firstName}}</a>
+                <p class="blogpost-meta">Posted by <a href="/auth/author/profile/{{blog.userId._id}}"
+                        style="color: orange;">{{blog.userId.firstName}}</a>
                     on {{blog.date}}</p>
                 <h2 class="blogpost-title">
                     {{blog.title}}

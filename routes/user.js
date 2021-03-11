@@ -260,6 +260,21 @@ router.get('/user/profile', auth, async (req, res) => {
     };
 });
 
+// ---------------- User PROFILE for Reader Access --------------- //
+router.get('/author/profile/:id', async (req, res) => {
+    // console.log("Cookies froM PROFILE-GET: ",req.cookies)
+    // console.log("loggedUsers from PROFILE-GET: ", loggedUsers)
+    try {
+        const info = await Profile.findOne({ userId: req.params.id });
+        const user = await User.findById({ _id: req.params.id });
+        res.render('profile', { title: `${user.firstName}'s profile`, layout, info, user });
+
+    } catch (error) {
+        console.log(error.message);
+        res.render('login', { title: 'Login', layout, error: "Error while Login..." });
+    };
+});
+
 // ---------------User Profile UPDATE Page - GET----------------- //
 
 router.get('/user/update/:id', auth, async (req, res) => {
