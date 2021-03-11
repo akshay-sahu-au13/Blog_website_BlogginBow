@@ -114,7 +114,9 @@
                                 {{{this.description}}}
                             </h3>
                         </a>
-                        <p class="post-meta">Posted by <a href="#">{{this.userId.firstName}}</a> {{this.date}}
+                        <p class="post-meta">Posted by <a href="/auth/author/profile/{{this.userId._id}}"
+                                target="_blank">{{this.userId.firstName}}</a> on
+                            {{this.date}} under
                             "{{this.genre}}"</p>
                     </div>
                     <hr>
