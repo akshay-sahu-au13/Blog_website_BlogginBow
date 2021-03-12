@@ -7,7 +7,7 @@ const MongoInit = require('./config/mongodb');
 const layout = path.join('layouts', "index");
 const cookie = require('cookie-parser');
 const PORT = process.env.PORT || 5200;
-// const hbs = require('hbs');
+const hbs = require('hbs');
 // const User = require('./models/user');
 const Blog = require('./models/blog');
 // const partialPath = path.join(__dirname, '../views/partials');
@@ -37,6 +37,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Setting up view engine
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'views'));
+
+hbs.registerHelper('dateLocal', function(date) {
+    return date.toLocaleDateString();
+ });
 
 // For flash message
 app.all('/express-flash', (req, res )=> {

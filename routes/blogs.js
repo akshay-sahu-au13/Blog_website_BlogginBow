@@ -90,6 +90,8 @@ router.get('/readblogs/:id', async (req, res) => {
         logged = true;
 
     }
+    blog.date = blog.date.toDateString();
+    console.log(blog.date)
     res.render('blogs', { layout:layout2, title: `${blog.title}`, blog, logged })
 })
 
