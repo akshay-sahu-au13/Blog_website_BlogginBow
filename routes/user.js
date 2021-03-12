@@ -94,8 +94,7 @@ router.post('/signup',
 
 // -----------------User/Admin LOGIN Page - GET------------------- //
 router.get('/login', async(req, res) => {
-    // const user = await User.findOne({email:req.body.email});
-    // checking if user is already logged in
+
 try {
     if (req.cookies.token) {
 
@@ -119,21 +118,6 @@ try {
         throw error
     }
 }
-
-    // // SESSION BASED AUTHENTICATION
-
-    // if (req.session && req.session.token) {
-    //     console.log(`Session available::::: ${req.session}`);
-    //     if (loggedUsers[jwt.verify(req.session.token, config.secret)] == true) {
-    //         res.redirect('/auth/user');
-    //     } else {
-    //         res.render('login', { msg: "Logged out", title: "Login", layout });
-    //     }
-    // } else {
-    //     console.log('No Session')
-    //     res.render('login', { title: "Login", layout });
-    // }
-
 
 });
 
@@ -181,10 +165,6 @@ router.post('/login',
             console.log("Login POST(token): ",token);
             // storing token in cookie
             res.cookie('token', token, { maxAge: 600000 });
-
-            //storing token in express session
-            // req.session.token = token;
-            // console.log(`Session: ${req.session} :::: Req.session: ${req.session.token}`)
 
             loggedUsers[user._id] = true;
             logs.push({id:user._id, name:user.firstName, email:req.body.email})
@@ -269,8 +249,10 @@ router.get('/author/profile/:id', async (req, res) => {
     // console.log("loggedUsers from PROFILE-GET: ", loggedUsers)
     try {
         const info = await Profile.findOne({ userId: req.params.id });
+        const socialmedia = await socialMedia.findOne({userId:req.params.id});
+        const blogs = await Blog.find({userId:req.params.id}).sort({_id:-1});
         const user = await User.findById({ _id: req.params.id });
-        res.render('profile', { title: `${user.firstName}'s profile`, layout, info, user });
+        res.render('profile', { title: `${user.firstName}'s profile`, layout, info, user, sm:socialmedia, blogs});
 
     } catch (error) {
         console.log(error.message);
@@ -290,7 +272,7 @@ router.get('/user/update/:id', auth, async (req, res) => {
 router.post('/user/update/:id', auth, upload, async (req, res) => {
     const user = await User.findById({ _id: req.params.id });
     let info = await Profile.findOne({ userId: req.params.id });
-    console.log(user) //TEST: to check the user info - will remove it soon
+    console.log(user)
  try {
     if (!info) {
         info = new Profile({
@@ -323,7 +305,7 @@ router.post('/user/update/:id', auth, upload, async (req, res) => {
                     city: req.body.city,
                     zip: req.body.zip
                 },
-                image: req.file.filename,  // Need to update the code for no image selected by user
+                image: req.file.filename,  
                 facebook: req.body.facebook,
                 userId: user._id
 
@@ -331,8 +313,7 @@ router.post('/user/update/:id', auth, upload, async (req, res) => {
             }
         });
     }
-    // await info.save();
-    // res.render('profile1', { layout, title: "Profile", user })
+
     res.redirect('/auth/user/profile');
  } catch (error) {
      if (error) {
@@ -440,7 +421,6 @@ router.post('/profile/social-media',auth, async(req, res)=> {
     }
 });
 
-// router.get()
 
 userRoutes = router;
 
