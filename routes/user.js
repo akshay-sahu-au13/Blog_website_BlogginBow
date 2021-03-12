@@ -250,7 +250,7 @@ router.get('/author/profile/:id', async (req, res) => {
     try {
         const info = await Profile.findOne({ userId: req.params.id });
         const socialmedia = await socialMedia.findOne({userId:req.params.id});
-        const blogs = await Blog.find({userId:req.params.id}).sort({_id:-1});
+        const blogs = await Blog.find({userId:req.params.id}).populate('userId').sort({_id:-1});
         const user = await User.findById({ _id: req.params.id });
         res.render('profile', { title: `${user.firstName}'s profile`, layout, info, user, sm:socialmedia, blogs});
 
