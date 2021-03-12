@@ -39,7 +39,7 @@ app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'views'));
 
 hbs.registerHelper('dateLocal', function(date) {
-    return date.toLocaleDateString();
+    return date.toLocaleString();
  });
 
 // For flash message
