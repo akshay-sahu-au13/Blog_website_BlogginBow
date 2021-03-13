@@ -18,7 +18,7 @@ const Blog = require('../models/blog');
 const socialMedia = require('../models/social-media');
 
 
-// -- setting up Storage for mukter -- //
+// -- setting up Storage for multer -- //
 const Storage = multer.diskStorage({
     destination: "./public/uploads/",
     filename: (req, file, cb) => {
@@ -26,7 +26,7 @@ const Storage = multer.diskStorage({
     }
 });
 
-// -- Init file upload -- //
+// -- Init file upload via multer -- //
 
 let upload = multer({
     storage: Storage,
@@ -126,7 +126,7 @@ try {
 router.post('/login',
     [
         check('email', 'Please enter a valid email').isEmail(),
-        check('password', 'Please enter a valid password').isLength({ min: 6 })  // have to make room for errors in hbs
+        check('password', 'Please enter a valid password').isLength({ min: 6 })  
     ],
     authRole,
     async (req, res) => {
