@@ -183,7 +183,7 @@ router.post('/login',
 
 router.get('/admin/:id', async(req, res) => {
 try {
-    // const decoded = jwt.verify(req.cookies['token'], config.secret);
+    
     const decoded = jwt.verify(req.params.id, config.secret);
     const allUsers = await User.find();
     // console.log(allUsers);
