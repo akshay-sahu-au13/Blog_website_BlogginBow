@@ -42,11 +42,11 @@ hbs.registerHelper('dateLocal', function(date) {
     return date.toLocaleString();
  });
 
-// For flash message
-app.all('/express-flash', (req, res )=> {
-  req.flash('success', 'This is a flash message using the express-flash module.');
-  res.redirect(301, '/');
-})
+// For flash message --- Currently not using it //
+// app.all('/express-flash', (req, res )=> {
+//   req.flash('success', 'This is a flash message using the express-flash module.');
+//   res.redirect(301, '/');
+// })
 
 // ---------- Setting storage engine ----------- //
 const Storage = multer.diskStorage({
