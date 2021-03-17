@@ -199,7 +199,7 @@
                                             <li>
                                                 <div class="post-preview">
 
-                                                    <a href="/auth/user/userblogs/{{this._id}}" target="_blank">
+                                                    <a href="/readblogs/{{this._id}}" target="_blank">
                                                         <h2 class="post-title" style="color:seashell">
                                                             {{this.title}}
                                                         </h2>
@@ -208,7 +208,7 @@
                                                         </h3>
                                                     </a>
                                                     <p class="post-meta" style="color: turquoise;"><a
-                                                            href="/auth/user/profile/{{user._id}}"
+                                                            href="/auth/author/profile/{{this.userId._id}}"
                                                             style="color: rgb(122, 174, 243);">Posted by
                                                             {{this.userId.firstName}}</a>
                                                         on {{dateLocal this.date}}</p>
