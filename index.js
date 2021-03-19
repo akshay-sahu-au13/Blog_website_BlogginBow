@@ -8,9 +8,7 @@ const layout = path.join('layouts', "index");
 const cookie = require('cookie-parser');
 const PORT = process.env.PORT || 5200;
 const hbs = require('hbs');
-// const User = require('./models/user');
 const Blog = require('./models/blog');
-// const partialPath = path.join(__dirname, '../views/partials');
 const multer = require('multer');
 const methodOverride = require('method-override');
 
@@ -22,8 +20,8 @@ const app = express();
 // cookie-parser
 app.use(cookie());
 // body-parser
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 // Method override
 app.use(methodOverride('_method'));
 
