@@ -215,7 +215,7 @@ router.get('/admin/:id', async (req, res) => {
 
 router.get('/admin/allblogs/:id', async (req, res) => {
     try {
-
+        const allBlogs = await Blog.find().populate('userId').sort('desc')
 
 
     } catch (error) {
