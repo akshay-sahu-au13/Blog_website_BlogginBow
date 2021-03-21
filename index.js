@@ -96,10 +96,10 @@ app.post('/', async(req, res)=> {
 
 app.get('/about-us', (req, res)=> {
     res.render('about', {title:"About Us", layout})
-})
+});
 
 
 app.listen(PORT, () => {
     console.log(`Listening to http://localhost:${PORT}`);
-})
+});
 
