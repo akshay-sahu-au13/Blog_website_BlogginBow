@@ -215,9 +215,10 @@ router.get('/admin/:id', async (req, res) => {
 
 router.get('/admin/allblogs/:id', async (req, res) => {
     try {
-        const allBlogs = await Blog.find().populate('userId').sort('desc')
-
-
+        const allBlogs = await Blog.find().populate('userId').sort({_id:-1});
+        console.log("Latest blog from Allblogs admin route: ",allBlogs[0]);
+        res.render('allblogsForAdmin', {title:"User Blogs", layout, allBlogs});
+        
     } catch (error) {
         if (error) {
             console.log(error.message);
