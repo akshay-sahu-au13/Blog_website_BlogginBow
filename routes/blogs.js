@@ -116,13 +116,13 @@ router.post('/auth/profile/editblog/:id', auth, async(req, res) => {
             }
         });
         await eblog.save();
-    const blog = await Blog.findById({_id:req.params.id})
-    await blog.save()
+    const blog = await Blog.findById({_id:req.params.id});
+    await blog.save();
         res.render('blogs', {layout, title:"Edited Successfully", blog:blog, msg:"Blog Edited successfully"})
     } catch (error) {
         if (error) console.log(error.message);
-        res.render('editblog', {title:"Error while saving", layout, msg:"Error while saving, please try again..."})
-    }
+        res.render('editblog', {title:"Error while saving", layout, msg:"Error while saving, please try again..."});
+    };
 });
 
 router.post('/auth/profile/deleteblog/:id', auth, async(req, res) => {
