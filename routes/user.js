@@ -211,6 +211,8 @@ try {
 }
 });
 
+// ----------------- Admin - All blogs - Edit/Delete/Deactivate ---------------- //
+
 // -----------------User PROFILE/USER Page - GET------------------- //
 router.get('/user', auth, async (req, res) => {
     try {
