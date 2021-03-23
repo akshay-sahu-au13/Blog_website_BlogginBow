@@ -21,7 +21,7 @@
                         <a href="/auth/user">All users</a>
                     </li>
                     <li>
-                        <a href="/auth/profile/userblogs">All Blogs</a>
+                        <a href="/admin/allblogs">All Blogs</a>
                     </li>
                     <li>
                         <a href="/auth/profile/writeblog">Write a Blog</a>
@@ -273,12 +273,19 @@
                                     <h6 class="d-flex align-items-center mb-3"><i
                                             class="material-icons text-info mr-2">User Blogs
                                         </i></h6>
-                                    <small>Web Design</small>
-                                    <div class="progress mb-3" style="height: 5px">
+                                    <ul>
+                                        {{#allBlogs}}
+                                        <li>
+                                            <small>this.</small>
+                                        </li>
+                                    </ul>
+
+
+                                    {{!-- <div class="progress mb-3" style="height: 5px">
                                         <div class="progress-bar bg-primary" role="progressbar" style="width: 80%"
                                             aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <small>Website Markup</small>
+                                    </div> --}}
+                                    {{!-- <small>Website Markup</small>
                                     <div class="progress mb-3" style="height: 5px">
                                         <div class="progress-bar bg-primary" role="progressbar" style="width: 72%"
                                             aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
@@ -297,7 +304,7 @@
                                     <div class="progress mb-3" style="height: 5px">
                                         <div class="progress-bar bg-primary" role="progressbar" style="width: 66%"
                                             aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>
