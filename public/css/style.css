@@ -464,6 +464,12 @@ input[type="checkbox"]:not(:checked) + label, input[type="checkbox"]:checked + l
   scroll-behavior: smooth;
 }
 
+.deactivate_blog {
+  position: absolute;
+  top: 100px;
+  right: 75px;
+}
+
 .ul{
   height:700px;
 }
