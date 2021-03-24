@@ -457,11 +457,19 @@ input[type="checkbox"]:not(:checked) + label, input[type="checkbox"]:checked + l
 }
 /* To convert the list into vertically scrollable block */
 .vscroll {
-  height: 800px;
+  /* height: 800px; */
   overflow-x: hidden;
   overflow-y: auto;
   text-align:justify;
   scroll-behavior: smooth;
+}
+
+.ul{
+  height:700px;
+}
+
+.bl {
+  height: 297px;
 }
 
 /* ----------------------FOr displaying a blog---------------------- */
