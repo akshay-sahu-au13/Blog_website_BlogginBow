@@ -12,7 +12,7 @@ router.get('/auth/profile/userblogs', auth, async (req, res) => {
     const user = await User.findById({ _id: req.user });
     try {
         let blogs = await Blog.find({ userId: req.user }).populate(req.user).sort({ _id: -1 });
-        console.log(blogs);
+        // console.log(blogs);
         const data = {
             title: `${user.firstName}'s blogpost`,
             layout,
@@ -76,34 +76,47 @@ router.post('/auth/profile/writeblog', auth, async (req, res) => {
 });
 
 router.get('/auth/user/userblogs/:id', auth, async (req, res) => {
-    const blog = await Blog.findById({ _id: req.params.id }).populate('userId');
+    try {
+        const blog = await Blog.findById({ _id: req.params.id }).populate('userId');
     console.log(blog);
     // const user = await User.findById({ _id: req.user });
     res.render('blogs', { title: `${blog.title}`, layout:layout2, blog, logged:true });
-})
+    } catch (error) {
+        if (error) cconsole.log(error);
+        res.render('blogs', { title: `${blog.title}`, layout:layout2, blog, logged:true, error:"Error occurred while fetching blogs" });
+    };
+});
 
 router.get('/readblogs/:id', async (req, res) => {
-    const blog = await Blog.findById({ _id: req.params.id }).populate('userId');
+    try {
+        const blog = await Blog.findById({ _id: req.params.id }).populate('userId');
     console.log(blog);
     let logged = false;
     if (req.cookies.token){
         logged = true;
-
     }
     blog.date = blog.date.toDateString();
-    console.log(blog.date)
-    res.render('blogs', { layout:layout2, title: `${blog.title}`, blog, logged })
+    // console.log(blog.date)
+    res.render('blogs', { layout:layout2, title: `${blog.title}`, blog, logged });
+
+    } catch (error) {
+        if (error) console.log(error.message);
+        res.render('blogs', { layout:layout2, title: `${blog.title}`, blog, logged, error:"Error in fetching blog" });
+    }
 })
 
+// ------------ EDIT BLOG --GET ----------------//
 router.get('/auth/profile/editblog/:id', auth, async (req, res) => {
     try {
         const blog = await Blog.findById({_id:req.params.id});
-        res.render('editblog', { title: "Edit blog", layout, blog })
+        res.render('editblog', { title: "Edit blog", layout, blog });
     } catch (error) {
         if (error) console.log(error.message);
         throw error;
     }
-})
+});
+
+
 
 router.post('/auth/profile/editblog/:id', auth, async(req, res) => {
     try {
@@ -125,6 +138,8 @@ router.post('/auth/profile/editblog/:id', auth, async(req, res) => {
     };
 });
 
+
+
 router.post('/auth/profile/deleteblog/:id', auth, async(req, res) => {
     try {
         await Blog.findByIdAndDelete({_id:req.params.id});
@@ -135,6 +150,8 @@ router.post('/auth/profile/deleteblog/:id', auth, async(req, res) => {
         res.render('userblogs', {title:"Error while deleting", layout, msg:"Error while deleting, please try again..."})
     }
 });
+
+
 
 router.post('/addcomment/:id', async (req, res) => {
     const blog = await Blog.findById({ _id: req.params.id });
