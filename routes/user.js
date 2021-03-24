@@ -185,13 +185,12 @@ router.get('/admin/:id', async (req, res) => {
         const decoded = jwt.verify(req.params.id, config.secret);
         const allUsers = await User.find();
         // console.log(allUsers);
-        const allBlogs = await Blog.find().populate('userId').sort({_id:-1});
-        allBlogs.splice(9,);
+        const allBlogs = await Blog.find().populate('userId').sort({ _id: -1 });
+        // allBlogs.splice(9,);
         // console.log(allBlogs[1]);
         const user = await Profile.findOne({ userId: decoded }).populate('userId');
+
         console.log("Admins's Info: ", user)
-        // const loggedusers = Object.entries(loggedUsers);
-        // console.log(loggedusers);
         const lUsers = allUsers.map(item => {
             if (item._id in loggedUsers && loggedUsers[item._id] == true) {
                 return { name: item.firstName, email: item.email }
@@ -201,8 +200,14 @@ router.get('/admin/:id', async (req, res) => {
                 return item
             }
         });
+
         console.log(lUsers);
+
         res.render('admin', { title: "Admin", layout, user, allUsers, allBlogs, id: req.params.id, lUsers });
+
+
+        // const loggedusers = Object.entries(loggedUsers);
+        // console.log(loggedusers);
 
     } catch (error) {
         if (error) {
@@ -216,10 +221,10 @@ router.get('/admin/:id', async (req, res) => {
 
 router.get('/admin/allblogs/:id', async (req, res) => {
     try {
-        const allBlogs = await Blog.find().populate('userId').sort({_id:-1});
-        console.log("Latest blog from Allblogs admin route: ",allBlogs[0]);
-        res.render('allblogsForAdmin', {title:"User Blogs", layout, allBlogs});
-        
+        const allBlogs = await Blog.find().populate('userId').sort({ _id: -1 });
+        console.log("Latest blog from Allblogs admin route: ", allBlogs[0]);
+        res.render('allblogsForAdmin', { title: "User Blogs", layout, allBlogs });
+
     } catch (error) {
         if (error) {
             console.log(error.message);
