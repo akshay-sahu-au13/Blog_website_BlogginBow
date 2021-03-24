@@ -25,16 +25,16 @@ router.get('/auth/profile/userblogs', auth, async (req, res) => {
             blogs, user
         });
     } catch (error) {
-        console.log(error)
+        console.log(error);
         throw error;
-    }
+    };
 
 });
 
 
 // ---------------User WRITE BLOG page - GET----------------- //
 router.get('/auth/profile/writeblog', auth, (req, res) => {
-    res.render('writeblog', { layout, title: "Write blog here" })
+    res.render('writeblog', { layout, title: "Write blog here" });
 })
 
 router.post('/auth/profile/writeblog', auth, async (req, res) => {
@@ -70,8 +70,8 @@ router.post('/auth/profile/writeblog', auth, async (req, res) => {
                 error: "Error while saving..."
             };
             res.render('writeblog', data);
-        }
-    }
+        };
+    };
 
 });
 
@@ -102,8 +102,8 @@ router.get('/readblogs/:id', async (req, res) => {
     } catch (error) {
         if (error) console.log(error.message);
         res.render('blogs', { layout:layout2, title: `${blog.title}`, blog, logged, error:"Error in fetching blog" });
-    }
-})
+    };
+});
 
 // ------------ EDIT BLOG --GET ----------------//
 router.get('/auth/profile/editblog/:id', auth, async (req, res) => {
@@ -113,7 +113,7 @@ router.get('/auth/profile/editblog/:id', auth, async (req, res) => {
     } catch (error) {
         if (error) console.log(error.message);
         throw error;
-    }
+    };
 });
 
 
@@ -143,12 +143,12 @@ router.post('/auth/profile/editblog/:id', auth, async(req, res) => {
 router.post('/auth/profile/deleteblog/:id', auth, async(req, res) => {
     try {
         await Blog.findByIdAndDelete({_id:req.params.id});
-        let blogs = await Blog.find({ userId: req.user }).populate(req.user).sort({ _id: -1 });
+        // let blogs = await Blog.find({ userId: req.user }).populate(req.user).sort({ _id: -1 });
         res.redirect('/auth/profile/userblogs');
     } catch (error) {
         if (error) console.log(error.message);
-        res.render('userblogs', {title:"Error while deleting", layout, msg:"Error while deleting, please try again..."})
-    }
+        res.render('userblogs', {title:"Error while deleting", layout, msg:"Error while deleting, please try again..."});
+    };
 });
 
 
@@ -168,7 +168,7 @@ router.post('/addcomment/:id', async (req, res) => {
         res.redirect(`/readblogs/${req.params.id}/#comment`);
     } catch (error) {
         console.log(error.message);
-        res.redirect(`/readblogs/${req.params.id}/#comment`)
+        res.redirect(`/readblogs/${req.params.id}/#comment`);
         // throw error;
     };
 
