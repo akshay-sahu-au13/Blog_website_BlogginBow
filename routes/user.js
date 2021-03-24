@@ -186,7 +186,7 @@ router.get('/admin/:id', async (req, res) => {
         const allUsers = await User.find();
         // console.log(allUsers);
         const allBlogs = await Blog.find().populate('userId').sort({_id:-1});
-        allBlogs.splice(10,);
+        allBlogs.splice(9,);
         // console.log(allBlogs[1]);
         const user = await Profile.findOne({ userId: decoded }).populate('userId');
         console.log("Admins's Info: ", user)
