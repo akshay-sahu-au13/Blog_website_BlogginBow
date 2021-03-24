@@ -54,10 +54,10 @@
 
                 <div class="container-fluid blog-show">
                     <div class="edit-btn">
-                        <a href="./editblog/{{this._id}}" class="btn btn-primary">Edit</a>
+                        <a href="/auth/profile/editblog/{{this._id}}" class="btn btn-primary">Edit</a>
                     </div>
                     <div class="deleteblog delete-btn ">
-                        <form action="./deleteblog/{{this._id}}" method="POST"><button type="submit"
+                        <form action="/auth/profile/deleteblog/{{this._id}}" method="POST"><button type="submit"
                                 class="btn btn-danger">Delete</button></form>
                         {{!-- <a href="./deleteblog/{{this._id}}" class="btn btn-danger">Delete</a> --}}
 
@@ -67,7 +67,7 @@
 
                         </p>
 
-                        <p class="blogpost-meta"> <a href="/auth/user/profile/{{user._id}}"
+                        <p class="blogpost-meta"> <a href="/auth/author/profile/{{user._id}}"
                                 style="color: palegreen;">Posted by you
                             </a>
                             on {{dateLocal this.date}}</p>
