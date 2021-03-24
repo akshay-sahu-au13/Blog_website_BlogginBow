@@ -185,7 +185,8 @@ router.get('/admin/:id', async (req, res) => {
         const decoded = jwt.verify(req.params.id, config.secret);
         const allUsers = await User.find();
         // console.log(allUsers);
-        const allBlogs = await Blog.find().populate('userId');
+        const allBlogs = await Blog.find().populate('userId').sort({_id:-1});
+        allBlogs.splice(7,);
         // console.log(allBlogs[1]);
         const user = await Profile.findOne({ userId: decoded }).populate('userId');
         console.log("Admins's Info: ", user)
