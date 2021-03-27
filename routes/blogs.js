@@ -7,7 +7,7 @@ const User = require('../models/user');
 const layout = path.join('layouts', 'index');
 const layout2 = path.join('layouts', 'index2');
 
-
+// ------------------ Get - Userblogs ------------------- //
 router.get('/auth/profile/userblogs', auth, async (req, res) => {
     const user = await User.findById({ _id: req.user });
     try {
@@ -75,6 +75,7 @@ router.post('/auth/profile/writeblog', auth, async (req, res) => {
 
 });
 
+// ----------------- GET -User Blogs (single) --------------- //
 router.get('/auth/user/userblogs/:id', auth, async (req, res) => {
     try {
         const blog = await Blog.findById({ _id: req.params.id }).populate('userId');
@@ -87,6 +88,7 @@ router.get('/auth/user/userblogs/:id', auth, async (req, res) => {
     };
 });
 
+// -------------- GET - Read Blog (General access) -------------- //
 router.get('/readblogs/:id', async (req, res) => {
     try {
         const blog = await Blog.findById({ _id: req.params.id }).populate('userId');
@@ -117,7 +119,7 @@ router.get('/auth/profile/editblog/:id', auth, async (req, res) => {
 });
 
 
-
+// -------------------- EDIT BLOG -POST ------------------- //
 router.post('/auth/profile/editblog/:id', auth, async(req, res) => {
     try {
        const eblog =  await Blog.findByIdAndUpdate({_id:req.params.id}, {
@@ -139,7 +141,7 @@ router.post('/auth/profile/editblog/:id', auth, async(req, res) => {
 });
 
 
-
+// ----------------- DELETE BLOG - POST ------------------ //
 router.post('/auth/profile/deleteblog/:id', auth, async(req, res) => {
     try {
         await Blog.findByIdAndDelete({_id:req.params.id});
@@ -152,7 +154,7 @@ router.post('/auth/profile/deleteblog/:id', auth, async(req, res) => {
 });
 
 
-
+// ------------------- ADD COMMENT (POST)----------------- //
 router.post('/addcomment/:id', async (req, res) => {
     const blog = await Blog.findById({ _id: req.params.id });
     try {
