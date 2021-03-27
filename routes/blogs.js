@@ -107,7 +107,7 @@ router.get('/readblogs/:id', async (req, res) => {
     };
 });
 
-// ------------ EDIT BLOG --GET ----------------//
+// ------------ EDIT BLOG -GET ----------------//
 router.get('/auth/profile/editblog/:id', auth, async (req, res) => {
     try {
         const blog = await Blog.findById({_id:req.params.id});
