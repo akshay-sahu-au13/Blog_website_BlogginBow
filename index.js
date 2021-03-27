@@ -94,11 +94,13 @@ app.post('/', async(req, res)=> {
     };
 });
 
+// ---------------------- ABOUT US PAGE -------------------- //
+
 app.get('/about-us', (req, res)=> {
     res.render('about', {title:"About Us", layout})
 });
 
-
+// -------------- LISTENING TO PORT ---------------- //
 app.listen(PORT, () => {
     console.log(`Listening to http://localhost:${PORT}`);
 });
